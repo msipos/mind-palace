@@ -1,0 +1,35 @@
+{% extends "base_internal.jinja.html" %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{{ url('home') }}">Home</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Repeat</a></li>
+                </ul>
+            </nav>
+
+            <div class="columns">
+                <div class="column" id="RepeatPage">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.mpReact.mount(
+            window.mpReact.pages.RepeatPage,
+            {
+                urlRepeat: "{{ url('api_repeat') }}",
+                urlEditPrefix: "{{ url_edit_prefix }}",
+                urlEditPostfix: "{{ url_edit_postfix }}",
+            },
+            "RepeatPage"
+        );
+
+    </script>
+
+{% endblock %}

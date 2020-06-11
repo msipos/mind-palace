@@ -1,0 +1,15 @@
+.NoteRepeatMetadataEditor {
+    padding: 10px 0 10px 0;
+}
+
+.NoteRepeatMetadataEditor input[type="radio"] {
+    margin-right: 8px;
+}
+
+.NoteRepeatMetadataEditor > div {
+    margin-bottom: 10px;
+}
+
+.NoteRepeatMetadataEditor-Nested {
+    margin-left: 30px;
+}

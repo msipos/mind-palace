@@ -1,0 +1,15 @@
+<html>
+<head>
+    {% include "partial_head.jinja.html" %}
+    <title>Mind Palace</title>
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{{ url('home') }}">
+            MindPalace
+        </a>
+    </div>
+</nav>
+{% block content %}{% endblock %}
+</body>

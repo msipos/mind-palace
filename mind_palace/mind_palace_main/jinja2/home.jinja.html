@@ -1,0 +1,46 @@
+{% extends "base_internal.jinja.html" %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li class="is-active"><a href="#" aria-current="page">Home</a></li>
+                </ul>
+            </nav>
+
+            <div class="columns">
+                <div class="column">
+                    <table class="table is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th>Collection Name</th>
+                            <th>Num. notes</th>
+                            <th>Num. archived</th>
+                            <th>Num. active</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for collection, cache in ccs %}
+                            <tr>
+                                <td>
+                                    <a href="{{ url('list_collection', args=[collection.id]) }}">{{ collection.name }}</a>
+                                </td>
+                                <td>{{ cache.num_total }}</td>
+                                <td>{{ cache.num_archived }}</td>
+                                <td>{{ cache.num_active }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+{% endblock %}

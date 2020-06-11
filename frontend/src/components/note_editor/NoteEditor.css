@@ -1,0 +1,26 @@
+.NoteEditor {
+    margin-top: 10px;
+}
+
+.NoteEditor-Padded {
+    padding: 5px 0 5px 0;
+}
+
+.NoteEditor-Save {
+    margin-right: 20px;
+}
+
+.NoteEditor .column {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+}
+
+.NoteEditor-ButtonBar {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.NoteEditor-ButtonBar .button {
+    margin-left: 10px;
+    margin-right: 10px;
+}

@@ -1,0 +1,76 @@
+{% extends "base_internal.jinja.html" %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{{ url('home') }}">Home</a></li>
+                    <li><a href="{{ url('list_collection', args=[collection.id]) }}">{{ collection.name }}</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">{{ note.name }}</a></li>
+                </ul>
+            </nav>
+
+            <div class="columns" style="margin-bottom: 10px;">
+                <div class="column is-narrow">
+                    <a class="button" href="{{ url('edit_note', args=[note.id]) }}">Edit</a>
+                    <span id="NoteArchiveButton">
+
+                    </span>
+                </div>
+                <div class="column"></div>
+                <div class="column is-narrow" id="NoteDeleteButton">
+
+                </div>
+            </div>
+            <div class="columns" style="margin-bottom: 10px;">
+                <div class="column" id="NoteViewer">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.mpReact.mount(
+            window.mpReact.components.NoteViewer,
+            {note: {{ note_json | safe }}},
+            "NoteViewer"
+        );
+        window.mpReact.mount(
+            window.mpReact.components.NoteButton,
+            {
+                buttonText: 'Delete',
+                action: 'delete',
+                urlSubmit: '{{ url("api_note_action", args=[note.id]) }}',
+                urlRedirect: '{{ url("list_collection", args=[note.collection.id]) }}'
+            },
+            "NoteDeleteButton"
+        );
+        {% if note.archived %}
+            window.mpReact.mount(
+                window.mpReact.components.NoteButton,
+                {
+                    buttonText: 'Unarchive',
+                    action: 'unarchive',
+                    urlSubmit: '{{ url("api_note_action", args=[note.id]) }}',
+                    urlRedirect: '{{ url("list_collection", args=[note.collection.id]) }}'
+                },
+                "NoteArchiveButton"
+            );
+        {% else %}
+            window.mpReact.mount(
+                window.mpReact.components.NoteButton,
+                {
+                    buttonText: 'Archive',
+                    action: 'archive',
+                    urlSubmit: '{{ url("api_note_action", args=[note.id]) }}',
+                    urlRedirect: '{{ url("list_collection", args=[note.collection.id]) }}'
+                },
+                "NoteArchiveButton"
+            );
+        {% endif %}
+    </script>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base_external.jinja.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+                <form method="post" action="{{ url('login') }}">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" class="mr-3">
+                    <input type="hidden" name="next" value="{{ next }}">
+
+                    <div class="field">
+                        {{ form.username.label_tag() }}
+                        <div class="control">
+                            {{ form.username }}
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        {{ form.password.label_tag() }}
+                        <div class="control">
+                            {{ form.password }}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input type="submit" class="button is-primary" value="login">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
