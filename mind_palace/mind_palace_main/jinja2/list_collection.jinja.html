@@ -1,0 +1,157 @@
+{% extends "base_internal.jinja.html" %}
+
+{% block content %}
+
+    <style>
+        .List-Collection-Toolbar {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .List-Collection-Toolbar > a {
+            margin-right: 10px;
+        }
+
+        .List-Collection-Toolbar-Space {
+            flex-grow: 1;
+        }
+
+        .List-Collection-SearchBar-Form {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+        }
+
+        .List-Collection-SearchBar-Form button {
+            margin-left: 10px;
+        }
+
+        .List-Collection-SearchBar-Input {
+            width: 200px;
+        }
+
+        @media (max-width: 800px) {
+            .List-Collection-SearchBar {
+                padding-top: 10px;
+            }
+
+            .List-Collection-SearchBar-Label {
+                display: none;
+            }
+
+            .List-Collection-Toolbar {
+                flex-wrap: wrap;
+            }
+
+            .List-Collection-Hidden {
+                display: none;
+            }
+        }
+    </style>
+
+    <section>
+        <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{{ url('home') }}">Home</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">{{ collection.name }}</a></li>
+                </ul>
+            </nav>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="List-Collection-Toolbar">
+                        <a href="{{ url('new_note', args=[collection.id]) }}" class="button is-primary">New Note</a>
+                        <a href="{{ url('new_note', args=[collection.id]) }}?diary=true" class="button is-primary">New
+                            Diary</a>
+                        <span class="List-Collection-Toolbar-Space"></span>
+                        <div class="List-Collection-SearchBar">
+                            <form method="get" autocomplete="on" class="form-inline List-Collection-SearchBar-Form">
+                                <span class="List-Collection-SearchBar-Label" style="margin-right: 10px;">
+                                    <label for="id_search">Search:</label>
+                                </span>
+                                <input type="text" name="q" value="{{ q }}"
+                                       class="input List-Collection-SearchBar-Input"
+                                       id="id_search">
+                                <button type="submit" class="button">Search</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <table class="table is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th>Note</th>
+                            <th class="List-Collection-Hidden">Created at</th>
+                            <th class="List-Collection-Hidden">Updated at</th>
+                            <th class="List-Collection-Hidden">Repeated at</th>
+                            <th>Next repeat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for note in notes %}
+                            <tr>
+                                <td>
+                                    <a href="{{ url('view_note', args=[note.id]) }}">
+                                        {{ note.name }}
+                                    </a>
+                                </td>
+                                <td class="List-Collection-Hidden">
+                                    {{ note.created_time_local.strftime('%Y-%m-%d') }}</td>
+                                <td class="List-Collection-Hidden">
+                                    {{ note.updated_time_local.strftime('%Y-%m-%d') }}</td>
+                                <td class="List-Collection-Hidden">
+                                    {% if note.last_repeat_time == 0 %}
+                                        Never
+                                    {% else %}
+                                        {{ note.last_repeat_time_local.strftime('%Y-%m-%d') }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% set until_snooze = note.repeat_time_local - reference_time %}
+                                    {% if until_snooze.total_seconds() < 0 %}
+                                        Active
+                                    {% else %}
+                                        {{ pretty_format_timedelta(until_snooze) }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <div>
+                <div class="level">
+                    <div class="level-item" style="margin-right: 10px;">
+                        {% if page.has_previous() %}
+                            <a class="button"
+                               href="{{ url('list_collection', args=[collection.id]) }}?p=
+                                       {{ page.previous_page_number() }}">
+                                Previous
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="level-item" style="margin-right: 10px;">
+                        {{ p }} / {{ paginator.num_pages }}
+                    </div>
+                    <div class="level-item">
+                        {% if page.has_next() %}
+                            <a class="button"
+                               href="{{ url('list_collection', args=[collection.id]) }}?p=
+                                       {{ page.next_page_number() }}">
+                                Next
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

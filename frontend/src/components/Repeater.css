@@ -1,0 +1,24 @@
+.Repeater-ButtonBar button:not(:last-child) {
+    margin-right: 15px;
+}
+
+.Repeater-Label {
+    padding-top: 7px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+
+.Repeater {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 800px) {
+    .Repeater {
+        flex-direction: column;
+    }
+
+    .Repeater-ButtonBar button {
+        margin-top: 10px;
+    }
+}

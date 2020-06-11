@@ -1,0 +1,15 @@
+.NoteMarkdownSectionEditor {
+    padding: 10px 0 10px 0;
+}
+
+.NoteMarkdownSectionEditor-Header {
+    margin-bottom: 0.25rem !important;
+}
+
+.NoteMarkdownSectionEditor input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.NoteMarkdownSectionEditor-Delete {
+    margin-left: 8px;
+}

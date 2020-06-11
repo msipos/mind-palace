@@ -1,0 +1,17 @@
+_static/
+db.sqlite3
+logs.txt
+
+mind_palace/mind_palace_main/static/site.css
+mind_palace/mind_palace_main/static/site.js
+mind_palace/mind_palace_main/static/site.js.map
+
+.idea/
+
+__pycache__/
+
+LOCAL_ENV.dev
+
+build/
+dist/
+mind_palace.egg-info/

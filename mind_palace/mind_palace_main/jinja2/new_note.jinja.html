@@ -1,0 +1,35 @@
+{% extends "base_internal.jinja.html" %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{{ url('home') }}">Home</a></li>
+                    <li><a href="{{ url('list_collection', args=[collection.id]) }}">{{ collection.name }}</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">New Note</a></li>
+                </ul>
+            </nav>
+
+            <div class="columns">
+                <div class="column" id="NewNotePage">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.mpReact.mount(
+            window.mpReact.pages.NewEditNotePage,
+            {
+                initialNote: {{ note_json | safe }},
+                urlCancel: "{{ url('list_collection', args=[collection.id]) }}",
+                urlSuccessRedirect: "{{ url('list_collection', args=[collection.id]) }}",
+                urlSave: "{{ url('api_new_note', args=[collection.id]) }}"
+            },
+            "NewNotePage"
+        );
+    </script>
+
+{% endblock %}

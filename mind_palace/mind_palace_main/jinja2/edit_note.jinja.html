@@ -1,0 +1,28 @@
+{% extends "base_internal.jinja.html" %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <div class="columns" style="margin-bottom: 10px;">
+                <div class="column" id="EditNotePage">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.mpReact.mount(
+            window.mpReact.pages.NewEditNotePage,
+            {
+                initialNote: {{ note_json | safe }},
+                urlCancel: "{{ url('view_note', args=[note.id]) }}",
+                urlSuccessRedirect: "{{ url('view_note', args=[note.id]) }}",
+                urlSave: "{{ url('api_edit_note', args=[note.id]) }}"
+            },
+            "EditNotePage"
+        );
+    </script>
+
+{% endblock %}

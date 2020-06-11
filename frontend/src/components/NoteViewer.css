@@ -1,0 +1,57 @@
+.NoteViewer-Title {
+    margin-left: 15px;
+}
+
+.NoteViewer-Section {
+    margin-top: 10px;
+}
+
+.NoteViewer-Section h1 {
+    font-size: 2rem !important;
+}
+
+.NoteViewer-Section h2 {
+    font-size: 1.8rem !important;
+}
+
+.NoteViewer-Section h3 {
+    font-size: 1.6rem !important;
+}
+
+.NoteViewer-Section h4 {
+    font-size: 1.4rem !important;
+}
+
+.NoteViewer-Section h5 {
+    font-size: 1.4rem !important;
+}
+
+.NoteViewer-Section p:not(:first-child) {
+    margin-top: 10px;
+}
+
+.NoteViewer-Section ul {
+    margin-left: 30px;
+    list-style: circle;
+}
+
+.NoteViewer-Section ol {
+    margin-left: 30px;
+}
+
+.NoteViewer-Section code {
+    color: #4a4a4a;
+    padding: 0;
+}
+
+.NoteViewer-Section ul:not(:first-child) {
+    margin-top: 10px;
+}
+
+.NoteViewer-Section ol:not(:first-child) {
+    margin-top: 10px;
+}
+
+.NoteViewer-Blur {
+    filter: blur(5px);
+}

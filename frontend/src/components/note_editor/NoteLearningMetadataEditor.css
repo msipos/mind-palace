@@ -1,0 +1,11 @@
+.NoteLearningMetadataEditor {
+    padding: 10px 0 10px 0;
+}
+
+.NoteLearningMetadataEditor input[type="radio"] {
+    margin-right: 8px;
+}
+
+.NoteLearningMetadataEditor > div {
+    margin-bottom: 10px;
+}
