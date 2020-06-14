@@ -2,6 +2,54 @@
 
 {% block content %}
 
+    <style>
+        .List-Collection-Toolbar {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .List-Collection-Toolbar > a {
+            margin-right: 10px;
+        }
+
+        .List-Collection-Toolbar-Space {
+            flex-grow: 1;
+        }
+
+        .List-Collection-SearchBar-Form {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+        }
+
+        .List-Collection-SearchBar-Form button {
+            margin-left: 10px;
+        }
+
+        .List-Collection-SearchBar-Input {
+            width: 200px;
+        }
+
+        @media (max-width: 800px) {
+            .List-Collection-SearchBar {
+                padding-top: 10px;
+            }
+
+            .List-Collection-SearchBar-Label {
+                display: none;
+            }
+
+            .List-Collection-Toolbar {
+                flex-wrap: wrap;
+            }
+
+            .List-Collection-Hidden {
+                display: none;
+            }
+        }
+    </style>
+
     <section>
         <div class="container">
             <nav class="breadcrumb" aria-label="breadcrumbs">
@@ -13,37 +61,31 @@
 
             <div class="columns">
                 <div class="column">
-                    <div class="is-clearfix is-fullwidth" style="margin-bottom: 10px;">
-                        <span class="is-pulled-left">
-                            <a href="{{ url('new_note', args=[collection.id]) }}" class="button is-primary">New Note</a>
-                            <a href="{{ url('new_note', args=[collection.id]) }}?diary=true" class="button is-primary">New Diary</a>
-                        </span>
-                        <span class="is-pulled-right">
-                            <form method="get" autocomplete="on" class="form-inline">
-                                <div class="level">
-                                    <div class="level-item" style="margin-right: 10px;">
-                                        <label for="id_search">Search:</label>
-                                    </div>
-                                    <div class="level-item" style="margin-right: 10px;">
-                                        <input type="text" name="q" value="{{ q }}" class="input" id="id_search"
-                                               style="width: 200px;">
-                                    </div>
-                                    <div class="level-item">
-                                        <button type="submit" class="button">Search</button>
-                                    </div>
-                                </div>
+                    <div class="List-Collection-Toolbar">
+                        <a href="{{ url('new_note', args=[collection.id]) }}" class="button is-primary">New Note</a>
+                        <a href="{{ url('new_note', args=[collection.id]) }}?diary=true" class="button is-primary">New
+                            Diary</a>
+                        <span class="List-Collection-Toolbar-Space"></span>
+                        <div class="List-Collection-SearchBar">
+                            <form method="get" autocomplete="on" class="form-inline List-Collection-SearchBar-Form">
+                                <span class="List-Collection-SearchBar-Label" style="margin-right: 10px;">
+                                    <label for="id_search">Search:</label>
+                                </span>
+                                <input type="text" name="q" value="{{ q }}"
+                                       class="input List-Collection-SearchBar-Input"
+                                       id="id_search">
+                                <button type="submit" class="button">Search</button>
                             </form>
-
-                        </span>
+                        </div>
                     </div>
 
                     <table class="table is-fullwidth">
                         <thead>
                         <tr>
                             <th>Note</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
-                            <th>Repeated at</th>
+                            <th class="List-Collection-Hidden">Created at</th>
+                            <th class="List-Collection-Hidden">Updated at</th>
+                            <th class="List-Collection-Hidden">Repeated at</th>
                             <th>Next repeat</th>
                         </tr>
                         </thead>
@@ -55,9 +97,11 @@
                                         {{ note.name }}
                                     </a>
                                 </td>
-                                <td>{{ note.created_time_local.strftime('%Y-%m-%d') }}</td>
-                                <td>{{ note.updated_time_local.strftime('%Y-%m-%d') }}</td>
-                                <td>
+                                <td class="List-Collection-Hidden">
+                                    {{ note.created_time_local.strftime('%Y-%m-%d') }}</td>
+                                <td class="List-Collection-Hidden">
+                                    {{ note.updated_time_local.strftime('%Y-%m-%d') }}</td>
+                                <td class="List-Collection-Hidden">
                                     {% if note.last_repeat_time == 0 %}
                                         Never
                                     {% else %}
@@ -85,7 +129,8 @@
                     <div class="level-item" style="margin-right: 10px;">
                         {% if page.has_previous() %}
                             <a class="button"
-                               href="{{ url('list_collection', args=[collection.id]) }}?p={{ page.previous_page_number() }}">
+                               href="{{ url('list_collection', args=[collection.id]) }}?p=
+                                       {{ page.previous_page_number() }}">
                                 Previous
                             </a>
                         {% endif %}
@@ -96,7 +141,8 @@
                     <div class="level-item">
                         {% if page.has_next() %}
                             <a class="button"
-                               href="{{ url('list_collection', args=[collection.id]) }}?p={{ page.next_page_number() }}">
+                               href="{{ url('list_collection', args=[collection.id]) }}?p=
+                                       {{ page.next_page_number() }}">
                                 Next
                             </a>
                         {% endif %}

@@ -2,6 +2,24 @@
 
 {% block content %}
 
+    <style>
+
+        .View-Note-Toolbar {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
+
+        #View-Note-Spacer {
+            flex-grow: 1;
+        }
+
+        #NoteArchiveButton {
+            margin-left: 10px;
+        }
+
+    </style>
+
     <section>
         <div class="container">
             <nav class="breadcrumb" aria-label="breadcrumbs">
@@ -12,17 +30,11 @@
                 </ul>
             </nav>
 
-            <div class="columns" style="margin-bottom: 10px;">
-                <div class="column is-narrow">
-                    <a class="button" href="{{ url('edit_note', args=[note.id]) }}">Edit</a>
-                    <span id="NoteArchiveButton">
-
-                    </span>
-                </div>
-                <div class="column"></div>
-                <div class="column is-narrow" id="NoteDeleteButton">
-
-                </div>
+            <div class="View-Note-Toolbar">
+                <a class="button" href="{{ url('edit_note', args=[note.id]) }}">Edit</a>
+                <span id="NoteArchiveButton"></span>
+                <span id="View-Note-Spacer"></span>
+                <span id="NoteDeleteButton"></span>
             </div>
             <div class="columns" style="margin-bottom: 10px;">
                 <div class="column" id="NoteViewer">

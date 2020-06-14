@@ -10,3 +10,9 @@ nav {
 .table a {
     color: #005cbf;
 }
+
+@media (max-width: 800px) {
+    section {
+        padding: 0 5px 0 5px;
+    }
+}
