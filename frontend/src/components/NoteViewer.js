@@ -1,3 +1,4 @@
+import ejs from 'ejs/ejs.min';
 import React from 'react';
 import marked from 'marked';
 import DOMPurify from 'dompurify';
@@ -43,8 +44,18 @@ class NoteViewer extends React.Component {
                     appearHidden = true;
                 }
             }
-            let html = marked(section.text);
+
+            // EJS
+            let text = section.text;
+            if (text.indexOf("<%=")) {
+                text = ejs.render(text, {time: new Date()});
+            }
+
+            // Markdown -> HTML, check for security too
+            let html = marked(text);
             html = DOMPurify.sanitize(html);
+
+            // Click handler
             let handleClick = null;
             if (appearHidden) {
                 handleClick = this._createHandler(i);
