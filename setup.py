@@ -4,8 +4,8 @@ with open('requirements.txt', 'rt') as f:
     install_requires = f.read().split()
 
 setuptools.setup(
-    name="mind_palace",  # Replace with your own username
-    version="0.0.5",
+    name="mind_palace",
+    version="0.0.6",
     author="Maksim Sipos",
     author_email="msipos@mailc.net",
     description="Mind palace: mnemonic note taking system",
