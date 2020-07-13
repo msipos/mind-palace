@@ -31,7 +31,7 @@ Pull requests welcome.
 ## TODOs
 
 * Collection editing is currently done through the admin UI, mostly out of laziness, as it's rarely done.
-* Minor bug: saving a note redirects to the collection view
+* Static asset management system will allow pictures and attachments
 
 ## Roadmap
 

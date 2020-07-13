@@ -1,3 +1,4 @@
+from django.urls import reverse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -18,4 +19,4 @@ class NewNoteAPIView(APIView):
         note.updated_time = timestamp_now()
         note.repeat_time = repeat_note(note_entity.repeat_policy)
         note.save()
-        return Response({})
+        return Response({'note_id': note.id, 'note_url': reverse('view_note', args=[note.id])})

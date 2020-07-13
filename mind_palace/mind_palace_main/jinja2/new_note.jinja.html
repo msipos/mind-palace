@@ -26,7 +26,8 @@
                 initialNote: {{ note_json | safe }},
                 urlCancel: "{{ url('list_collection', args=[collection.id]) }}",
                 urlSuccessRedirect: "{{ url('list_collection', args=[collection.id]) }}",
-                urlSave: "{{ url('api_new_note', args=[collection.id]) }}"
+                urlSave: "{{ url('api_new_note', args=[collection.id]) }}",
+                isNew: true
             },
             "NewNotePage"
         );

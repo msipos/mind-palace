@@ -24,3 +24,15 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+/* Save, Cancel, Delete */
+.NoteEditor-Toolbar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.NoteEditor-Toolbar-Gap {
+    flex-grow: 1;
+}
+

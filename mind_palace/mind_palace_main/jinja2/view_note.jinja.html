@@ -7,7 +7,7 @@
         .View-Note-Toolbar {
             display: flex;
             flex-direction: row;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         #View-Note-Spacer {
@@ -55,6 +55,7 @@
             {
                 buttonText: 'Delete',
                 action: 'delete',
+                buttonClass: 'is-danger',
                 urlSubmit: '{{ url("api_note_action", args=[note.id]) }}',
                 urlRedirect: '{{ url("list_collection", args=[note.collection.id]) }}'
             },

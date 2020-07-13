@@ -4,6 +4,16 @@
 
     <section>
         <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{{ url('home') }}">Home</a></li>
+                    <li><a href="{{ url('list_collection', args=[collection.id]) }}">{{ collection.name }}</a></li>
+                    <li><a href="{{ url('view_note', args=[note.id]) }}">{{ note.name }}</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">Edit</a></li>
+                </ul>
+            </nav>
+
+
             <div class="columns" style="margin-bottom: 10px;">
                 <div class="column" id="EditNotePage">
 
@@ -19,7 +29,10 @@
                 initialNote: {{ note_json | safe }},
                 urlCancel: "{{ url('view_note', args=[note.id]) }}",
                 urlSuccessRedirect: "{{ url('view_note', args=[note.id]) }}",
-                urlSave: "{{ url('api_edit_note', args=[note.id]) }}"
+                urlSave: "{{ url('api_edit_note', args=[note.id]) }}",
+                urlDelete: "{{ url('api_note_action', args=[note.id]) }}",
+                urlDeleteRedirect: "{{ url('list_collection', args=[collection.id]) }}",
+                isNew: false,
             },
             "EditNotePage"
         );

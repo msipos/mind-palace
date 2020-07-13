@@ -24,9 +24,14 @@ class NoteButton extends React.Component {
     }
 
     render() {
+        let className = "button";
+        if (this.props.buttonClass) {
+            className += " " + this.props.buttonClass;
+        }
+
         return (
             <span>
-                <button className="button"
+                <button className={className}
                         onClick={() => this.setState({modalOpen: true})}>{this.props.buttonText}</button>
                 <Modal show={this.state.modalOpen} onClose={this.handleNo}>
                     <div className="modal-content box">

@@ -94,7 +94,11 @@
                             <tr>
                                 <td>
                                     <a href="{{ url('view_note', args=[note.id]) }}">
-                                        {{ note.name }}
+                                        {% if note.name %}
+                                            {{ note.name }}
+                                        {% else %}
+                                            <i>Untitled</i>
+                                        {% endif %}
                                     </a>
                                 </td>
                                 <td class="List-Collection-Hidden">

@@ -5,6 +5,7 @@ import NoteRepeatMetadataEditor from "./NoteRepeatMetadataEditor";
 import NoteMarkdownSectionEditor from "./NoteMarkdownSectionEditor";
 import './NoteEditor.css';
 import {cloneObject} from "../../utils";
+import NoteButton from "../NoteButton";
 
 class NoteEditor extends Component {
     constructor(props) {
@@ -140,17 +141,23 @@ class NoteEditor extends Component {
                                                     key={section.index}/>);
         }
 
+        let deleteButton = null;
+        if (!this.props.isNew) {
+            deleteButton = <NoteButton buttonText="Delete" buttonClass="is-danger" urlSubmit={this.props.urlDelete}
+                                       urlRedirect={this.props.urlDeleteRedirect} action="delete"/>;
+        }
+
         return (
             <div className="NoteEditor">
-                <div className="columns">
-                    <div className="column is-narrow">
-                        <div className="NoteEditor-Padded">
-                            <button className="button NoteEditor-Save is-primary"
-                                    onClick={this.handleClickSave}>Save
-                            </button>
-                            <button className="button" onClick={this.handleClickCancel}>Cancel</button>
-                        </div>
+                <div className="NoteEditor-Toolbar">
+                    <div className="NoteEditor-Padded">
+                        <button className="button NoteEditor-Save is-primary"
+                                onClick={this.handleClickSave}>Save
+                        </button>
+                        <button className="button" onClick={this.handleClickCancel}>Cancel</button>
                     </div>
+                    <div className="NoteEditor-Toolbar-Gap"/>
+                    {deleteButton}
                 </div>
                 <div className="columns">
                     <div className="column">
@@ -160,7 +167,6 @@ class NoteEditor extends Component {
                                 <input className="input" type="text" name="name" value={this.state.name}
                                        onChange={this.handleChangeName}/>
                             </label>
-
                         </div>
                     </div>
                 </div>
@@ -192,7 +198,8 @@ class NoteEditor extends Component {
 NoteEditor.propTypes = {
     initialNote: propTypes.object,
     onSave: propTypes.func,
-    onCancel: propTypes.func
+    onCancel: propTypes.func,
+    isNew: propTypes.bool
 };
 
 export default NoteEditor;

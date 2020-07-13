@@ -27,5 +27,6 @@ class EditNoteView(LoginRequiredMixin, TemplateView):
         note_entity = note.to_entity()
         return {
             'note': note,
+            'collection': note.collection,
             'note_json': json.dumps(note_entity.to_json()),
         }

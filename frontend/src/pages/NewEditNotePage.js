@@ -10,14 +10,18 @@ class NewEditNotePage extends React.Component {
         this.handleCancel = this.handleCancel.bind(this);
     }
 
-    handleSave(note) {
-        fetchPost(this.props.urlSave, note).then((response) => {
-            if (response.status >= 200 && response.status < 300) {
-                window.location = this.props.urlSuccessRedirect;
+    async handleSave(note) {
+        let response = await fetchPost(this.props.urlSave, note);
+        if (response.status >= 200 && response.status < 300) {
+            if (this.props.isNew) {
+                let contents = await response.json();
+                window.location = contents.note_url;
             } else {
-                console.error(response);
+                window.location = this.props.urlSuccessRedirect;
             }
-        });
+        } else {
+            console.error(response);
+        }
     }
 
     handleCancel() {
@@ -25,7 +29,9 @@ class NewEditNotePage extends React.Component {
     }
 
     render() {
-        return <NoteEditor initialNote={this.props.initialNote} onSave={this.handleSave} onCancel={this.handleCancel}/>;
+        return <NoteEditor initialNote={this.props.initialNote} onSave={this.handleSave} onCancel={this.handleCancel}
+                           isNew={this.props.isNew} urlDelete={this.props.urlDelete}
+                           urlDeleteRedirect={this.props.urlDeleteRedirect}/>;
     }
 }
 
