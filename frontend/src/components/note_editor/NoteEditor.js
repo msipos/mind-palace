@@ -165,7 +165,7 @@ class NoteEditor extends Component {
                             <label>
                                 Name
                                 <input className="input" type="text" name="name" value={this.state.name}
-                                       onChange={this.handleChangeName}/>
+                                       onChange={this.handleChangeName} autoFocus={true}/>
                             </label>
                         </div>
                     </div>
