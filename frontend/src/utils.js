@@ -13,9 +13,23 @@ function fetchPost(url, data) {
             'X-CSRFToken': csrftoken
         },
         body: JSON.stringify(data)
-    })
+    });
+}
+
+function fetchPostFile(url, file) {
+    const csrftoken = Cookies.get('csrftoken');
+    const formData = new FormData()
+    formData.append('myFile', file)
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        body: formData
+    });
 }
 
 window.Cookies = Cookies;
 
-export {fetchPost, cloneObject};
+export {fetchPost, cloneObject, fetchPostFile};

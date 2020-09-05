@@ -6,6 +6,7 @@ import NoteMarkdownSectionEditor from "./NoteMarkdownSectionEditor";
 import './NoteEditor.css';
 import {cloneObject} from "../../utils";
 import NoteButton from "../NoteButton";
+import NoteAttachmentSectionEditor from "./NoteAttachmentSectionEditor";
 
 class NoteEditor extends Component {
     constructor(props) {
@@ -34,6 +35,7 @@ class NoteEditor extends Component {
         this.handleSectionChange = this.handleSectionChange.bind(this);
         this.handleSectionDelete = this.handleSectionDelete.bind(this);
         this.handleClickNewMarkdown = this.handleClickNewMarkdown.bind(this);
+        this.handleClickNewAttachment = this.handleClickNewAttachment.bind(this);
         this.handleRepeatingChange = this.handleRepeatingChange.bind(this);
         this.handleLearningChange = this.handleLearningChange.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -112,6 +114,17 @@ class NoteEditor extends Component {
         this.setState({contents: contents});
     }
 
+    handleClickNewAttachment() {
+        const contents = cloneObject(this.state.contents);
+        let i = this.getLastIndex();
+        contents.sections.push({
+            "type": "attachment",
+            "hidden": true,
+            "index": i,
+        });
+        this.setState({contents: contents});
+    }
+
     handleClickSave() {
         const note = {
             name: this.state.name,
@@ -140,10 +153,17 @@ class NoteEditor extends Component {
         // Section editors
         const editors = [];
         for (const section of this.state.contents.sections) {
-            editors.push(<NoteMarkdownSectionEditor index={section.index} text={section.text}
-                                                    hidden={section.hidden} onChange={this.handleSectionChange}
-                                                    onDelete={this.handleSectionDelete}
-                                                    key={section.index}/>);
+            if (section.type === "attachment") {
+                editors.push(<NoteAttachmentSectionEditor index={section.index}
+                                                          hidden={section.hidden} onChange={this.handleSectionChange}
+                                                          onDelete={this.handleSectionDelete}
+                                                          key={section.index}/>);
+            } else {
+                editors.push(<NoteMarkdownSectionEditor index={section.index} text={section.text}
+                                                        hidden={section.hidden} onChange={this.handleSectionChange}
+                                                        onDelete={this.handleSectionDelete}
+                                                        key={section.index}/>);
+            }
         }
 
         let deleteButton = null;
@@ -183,6 +203,7 @@ class NoteEditor extends Component {
                 <div className="columns is-centered">
                     <div className="column is-narrow NoteEditor-ButtonBar">
                         <button className="button" onClick={this.handleClickNewMarkdown}>New Markdown</button>
+                        <button className="button" onClick={this.handleClickNewAttachment}>New Attachment</button>
                     </div>
                 </div>
                 <div className="columns">

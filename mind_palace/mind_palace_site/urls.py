@@ -3,7 +3,8 @@ from django.contrib import admin
 from django.urls import path
 
 from mind_palace.mind_palace_main.views.api_views.collection_api_views import NewNoteAPIView
-from mind_palace.mind_palace_main.views.api_views.note_api_views import EditNoteAPIView, NoteActionAPIView
+from mind_palace.mind_palace_main.views.api_views.note_api_views import EditNoteAPIView, NoteActionAPIView, \
+    NoteAttachmentUploadAPIView
 from mind_palace.mind_palace_main.views.api_views.repeat_api_views import RepeatAPIView
 from mind_palace.mind_palace_main.views.auth_views import MpLoginView, MpLogoutView
 from mind_palace.mind_palace_main.views.collection_views import ListCollectionView, NewNoteView
@@ -30,6 +31,8 @@ urlpatterns = [
     # Api views
     path(f'{pfx}api/n/<uuid:id>/edit/', EditNoteAPIView.as_view(), name='api_edit_note'),
     path(f'{pfx}api/n/<uuid:id>/action/', NoteActionAPIView.as_view(), name='api_note_action'),
+    path(f'{pfx}api/n/<uuid:id>/upload/', NoteAttachmentUploadAPIView.as_view(), name='api_note_upload'),
     path(f'{pfx}api/c/<uuid:id>/new/', NewNoteAPIView.as_view(), name='api_new_note'),
+
     path(f'{pfx}api/repeat/', RepeatAPIView.as_view(), name='api_repeat'),
 ]

@@ -1,3 +1,4 @@
+from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -35,3 +36,15 @@ class NoteActionAPIView(APIView):
         else:
             raise ValueError(f'Invalid action: {action}')
         return Response({})
+
+
+class NoteAttachmentUploadAPIView(APIView):
+    parser_classes = (FileUploadParser,)
+
+    def post(self, request, filename, format=None):
+        file_obj = request.FILES['file']
+
+        print(request.FILES)
+
+        # do some stuff with uploaded file
+        return Response(status=204)

@@ -1,5 +1,6 @@
 export MIND_PALACE_STATIC_DIR='DIR/_static'
 export MIND_PALACE_SQLITE='DIR/db.sqlite3'
 export MIND_PALACE_LOGFILE='DIR/logs.txt'
+export MIND_PALACE_ATTACHMENT_DIR='DIR/attachments'
 export MIND_PALACE_DEBUG=True
 export MIND_PALACE_TIME_ZONE='Europe/London'
