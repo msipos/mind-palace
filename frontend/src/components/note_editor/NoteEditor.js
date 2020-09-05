@@ -92,12 +92,17 @@ class NoteEditor extends Component {
         this.setState({contents: contents});
     }
 
+    getLastIndex() {
+        const contents = this.state.contents;
+        if (contents.sections.length > 0) {
+            return contents.sections[contents.sections.length - 1].index + 1;
+        }
+        return 0;
+    }
+
     handleClickNewMarkdown() {
         const contents = cloneObject(this.state.contents);
-        let i = 0; // Calculate index
-        if (contents.sections.length > 0) {
-            i = contents.sections[contents.sections.length - 1].index + 1;
-        }
+        let i = this.getLastIndex();
         contents.sections.push({
             "type": "markdown",
             "text": "",

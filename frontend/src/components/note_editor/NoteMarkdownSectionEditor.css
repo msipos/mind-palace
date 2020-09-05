@@ -1,5 +1,6 @@
 .NoteMarkdownSectionEditor {
     padding: 10px 0 10px 0;
+    min-height: 100px;
 }
 
 .NoteMarkdownSectionEditor-Header {
