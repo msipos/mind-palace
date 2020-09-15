@@ -10,9 +10,6 @@ def build_frontend_debug(c):
         c.run('npm run build')
         c.run(f'cp -v dist/site.js ../{static_dir}')
         c.run(f'cp -v dist/site.js.map ../{static_dir}')
-
-        # For some weird reason site.css is only in buildprod...
-        c.run('npm run buildprod')
         c.run(f'cp -v dist/site.css ../{static_dir}')
 
 

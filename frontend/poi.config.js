@@ -1,5 +1,8 @@
 module.exports = {
     entry: 'index.js',
+    css: {
+       extract: true
+    },
     output: {
         fileNames: {
             js: 'site.js',
