@@ -11,7 +11,7 @@ nav {
     color: #005cbf;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
     section {
         padding: 0 5px 0 5px;
     }
