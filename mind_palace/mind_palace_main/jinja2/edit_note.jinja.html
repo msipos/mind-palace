@@ -8,7 +8,7 @@
                 <ul>
                     <li><a href="{{ url('home') }}">Home</a></li>
                     <li><a href="{{ url('list_collection', args=[collection.id]) }}">{{ collection.name }}</a></li>
-                    <li><a href="{{ url('view_note', args=[note.id]) }}">{{ note.name }}</a></li>
+                    <li><a href="{{ url('view_note', args=[note.id]) }}">{{ note.name_or_untitled }}</a></li>
                     <li class="is-active"><a href="#" aria-current="page">Edit</a></li>
                 </ul>
             </nav>

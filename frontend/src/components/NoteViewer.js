@@ -84,9 +84,15 @@ class NoteViewer extends React.Component {
             description += "Exponential learning policy."
         }
 
+        // Note title
+        let noteTitle = this.props.note.name.trim();
+        if (noteTitle === "") {
+            noteTitle = "Untitled";
+        }
+
         return (
             <div>
-                <h1 className="title NoteViewer-Title">{this.props.note.name}</h1>
+                <h1 className="title NoteViewer-Title">{noteTitle}</h1>
                 {sections}
                 <div className="box NoteViewer-Section">
                     <p dangerouslySetInnerHTML={{__html: description}}/>

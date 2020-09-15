@@ -41,6 +41,14 @@ class Note(models.Model):
         return SnoozeEvent.objects.filter(note=self)
 
     @property
+    def name_or_untitled(self) -> str:
+        """ Returns the name of the note or 'Untitled' in case of it is an empty string.  Useful for the view layer. """
+        name = self.name.strip()
+        if name == '':
+            return 'Untitled'
+        return name
+
+    @property
     def created_time_local(self) -> datetime:
         return timestamp_to_localtime(self.created_time)
 
