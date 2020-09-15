@@ -3,6 +3,8 @@ import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.shortcuts import redirect
+from django.views import View
 from django.views.generic import TemplateView
 
 from mind_palace.mind_palace_main.business_logic.entities.contents_entity import ContentsEntity
@@ -10,6 +12,7 @@ from mind_palace.mind_palace_main.business_logic.entities.learn_policy_entity im
 from mind_palace.mind_palace_main.business_logic.entities.note_entity import NoteEntity
 from mind_palace.mind_palace_main.business_logic.entities.repeat_policy_entity import RepeatPolicyEntity, RepeatPolicyType, TimeOfDay
 from mind_palace.mind_palace_main.business_logic.entities.section_entity import MarkdownSectionEntity
+from mind_palace.mind_palace_main.business_logic.repeat_logic import repeat_note
 from mind_palace.mind_palace_main.business_logic.timestamps import timestamp_to_localtime, timestamp_now, localtime_now
 from mind_palace.mind_palace_main.models import Collection, Note
 from mind_palace.mind_palace_main.utils import pretty_format_timedelta
@@ -56,10 +59,8 @@ class ListCollectionView(LoginRequiredMixin, TemplateView):
         }
 
 
-class NewNoteView(LoginRequiredMixin, TemplateView):
-    template_name = 'new_note.jinja.html'
-
-    def get_context_data(self, **kwargs):
+class NewNoteView(LoginRequiredMixin, View):
+    def get(self, request, **kwargs):
         # Is it a diary?
         is_diary = ('diary' in self.request.GET)
 
@@ -80,7 +81,11 @@ class NewNoteView(LoginRequiredMixin, TemplateView):
 
         note_entity = NoteEntity(name, ContentsEntity([MarkdownSectionEntity("")]), repeat_policy=repeat_policy,
                                  learn_policy=learn_policy)
-        return {
-            'note_json': json.dumps(note_entity.to_json()),
-            'collection': collection
-        }
+        note = Note(collection=collection, created_time=timestamp_now())
+        note.from_entity(note_entity)
+        note.created_time = timestamp_now()
+        note.updated_time = timestamp_now()
+        note.repeat_time = repeat_note(note_entity.repeat_policy)
+        note.save()
+
+        return redirect('edit_note', id=note.id)

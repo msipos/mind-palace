@@ -146,11 +146,8 @@ class NoteEditor extends Component {
                                                     key={section.index}/>);
         }
 
-        let deleteButton = null;
-        if (!this.props.isNew) {
-            deleteButton = <NoteButton buttonText="Delete" buttonClass="is-danger" urlSubmit={this.props.urlDelete}
-                                       urlRedirect={this.props.urlDeleteRedirect} action="delete"/>;
-        }
+        const deleteButton = <NoteButton buttonText="Delete" buttonClass="is-danger" urlSubmit={this.props.urlDelete}
+                                         urlRedirect={this.props.urlDeleteRedirect} action="delete"/>;
 
         return (
             <div className="NoteEditor">
@@ -159,7 +156,6 @@ class NoteEditor extends Component {
                         <button className="button NoteEditor-Save is-primary"
                                 onClick={this.handleClickSave}>Save
                         </button>
-                        <button className="button" onClick={this.handleClickCancel}>Cancel</button>
                     </div>
                     <div className="NoteEditor-Toolbar-Gap"/>
                     {deleteButton}
@@ -203,8 +199,6 @@ class NoteEditor extends Component {
 NoteEditor.propTypes = {
     initialNote: propTypes.object,
     onSave: propTypes.func,
-    onCancel: propTypes.func,
-    isNew: propTypes.bool
 };
 
 export default NoteEditor;

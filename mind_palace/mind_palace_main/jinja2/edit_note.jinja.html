@@ -27,12 +27,10 @@
             window.mpReact.pages.NewEditNotePage,
             {
                 initialNote: {{ note_json | safe }},
-                urlCancel: "{{ url('view_note', args=[note.id]) }}",
                 urlSuccessRedirect: "{{ url('view_note', args=[note.id]) }}",
                 urlSave: "{{ url('api_edit_note', args=[note.id]) }}",
                 urlDelete: "{{ url('api_note_action', args=[note.id]) }}",
                 urlDeleteRedirect: "{{ url('list_collection', args=[collection.id]) }}",
-                isNew: false,
             },
             "EditNotePage"
         );

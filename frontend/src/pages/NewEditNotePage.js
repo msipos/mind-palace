@@ -7,7 +7,6 @@ class NewEditNotePage extends React.Component {
         super(props);
 
         this.handleSave = this.handleSave.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);
     }
 
     async handleSave(note) {
@@ -24,13 +23,10 @@ class NewEditNotePage extends React.Component {
         }
     }
 
-    handleCancel() {
-        window.location = this.props.urlCancel;
-    }
-
     render() {
-        return <NoteEditor initialNote={this.props.initialNote} onSave={this.handleSave} onCancel={this.handleCancel}
-                           isNew={this.props.isNew} urlDelete={this.props.urlDelete}
+        return <NoteEditor initialNote={this.props.initialNote}
+                           onSave={this.handleSave}
+                           urlDelete={this.props.urlDelete}
                            urlDeleteRedirect={this.props.urlDeleteRedirect}/>;
     }
 }
