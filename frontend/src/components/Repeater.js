@@ -5,7 +5,7 @@ import './Repeater.css';
 class Repeater extends React.Component {
     componentDidMount() {
         for (const c of this.props.choices) {
-            Mousetrap.bind(String(c.key), () => {
+            Mousetrap.bind(String(c.payload.keyboard_shortcut), () => {
                 this.props.onChoice(c.payload)
             });
         }
@@ -29,7 +29,12 @@ class Repeater extends React.Component {
 
         // Add edit button
         buttons.push(
-            <button className="button" key={-1} onClick={() => this.props.onEdit()}>Edit (e)</button>
+            <button className="Repeater-Button button" key={-1} onClick={() => this.props.onEdit()}>
+                Edit
+                <div className="Repeater-Button-Keyboard">
+                    <span className="fas fa-keyboard Repeater-Button-Keyboard-Shortcut" />e
+                </div>
+            </button>
         );
 
         let idx = 0;
@@ -39,10 +44,14 @@ class Repeater extends React.Component {
                 __html: choice.htmlText
             }
             buttons.push(
-                <button className="button" onClick={() => {
+                <button className="Repeater-Button button" onClick={() => {
                     handleClick(choice.payload);
                 }} key={idx}>
                     <span dangerouslySetInnerHTML={innerHTML}/>
+                    <div className="Repeater-Button-Keyboard">
+                        <span className="fas fa-keyboard Repeater-Button-Keyboard-Shortcut" />
+                        {choice.payload.keyboard_shortcut}
+                    </div>
                 </button>
             );
         }

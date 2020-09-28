@@ -13,6 +13,16 @@
     flex-direction: row;
 }
 
+.Repeater-Button {
+    flex-direction: column;
+}
+
+@media (min-width: 800px) {
+    .Repeater-Button {
+        height: 50px !important;
+    }
+}
+
 @media (max-width: 800px) {
     .Repeater {
         flex-direction: column;
@@ -21,4 +31,19 @@
     .Repeater-ButtonBar button {
         margin-top: 10px;
     }
+
+    .Repeater-Button-Keyboard {
+        display: none;
+    }
 }
+
+
+.Repeater-Button-Keyboard {
+    color: #8b8b8b;
+}
+
+.Repeater-Button-Keyboard-Shortcut {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
