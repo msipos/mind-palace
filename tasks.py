@@ -11,6 +11,7 @@ def build_frontend_debug(c):
         c.run(f'cp -v dist/site.js ../{static_dir}')
         c.run(f'cp -v dist/site.js.map ../{static_dir}')
         c.run(f'cp -v dist/site.css ../{static_dir}')
+        c.run(f'cp -vR static_assets/* ../{static_dir}')
 
 
 @task
@@ -22,6 +23,7 @@ def build_frontend_release(c):
         c.run('npm run buildprod')
         c.run(f'cp -v dist/site.js ../{static_dir}')
         c.run(f'cp -v dist/site.css ../{static_dir}')
+        c.run(f'cp -vR static_assets/* ../{static_dir}')
 
 
 @task(pre=[build_frontend_debug])

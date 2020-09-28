@@ -62,9 +62,14 @@
             <div class="columns">
                 <div class="column">
                     <div class="List-Collection-Toolbar">
-                        <a href="{{ url('new_note', args=[collection.id]) }}" class="button is-primary">New Note</a>
-                        <a href="{{ url('new_note', args=[collection.id]) }}?diary=true" class="button is-primary">New
-                            Diary</a>
+                        <a href="{{ url('new_note', args=[collection.id]) }}" class="button is-primary">
+                            <span style="margin-right: 5px;" class="icon"><i class="fas fa-pen"></i></span>
+                            New Note
+                        </a>
+                        <a href="{{ url('new_note', args=[collection.id]) }}?diary=true" class="button is-primary">
+                            <span style="margin-right: 5px;" class="icon"><i class="fas fa-pen-fancy"></i></span>
+                            New Diary
+                        </a>
                         <span class="List-Collection-Toolbar-Space"></span>
                         <div class="List-Collection-SearchBar">
                             <form method="get" autocomplete="on" class="form-inline List-Collection-SearchBar-Form">
