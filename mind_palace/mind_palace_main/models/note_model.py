@@ -103,7 +103,8 @@ class Note(models.Model):
             created_time=self.created_time,
             updated_time=self.updated_time,
             repeat_time=self.repeat_time,
-            note_id=str(self.id)
+            note_id=str(self.id),
+            archived=self.archived
         )
 
     def from_entity(self, entity: NoteEntity, load_name=True, load_contents=True, load_metadata=True):
