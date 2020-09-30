@@ -38,10 +38,5 @@ def create_note_choices(repeat_policy: RepeatPolicyEntity, learn_policy: LearnPo
                                 choice_html=_choice_text(rep),
                                 choice_index=4,
                                 keyboard_shortcut='4'))
-        rep = repeat_policy.copy(2)
-        out.append(ChoiceEntity(rep,
-                                overwrite_repeat_policy=True,
-                                choice_html=_choice_text(rep),
-                                choice_index=5,
-                                keyboard_shortcut='5'))
+
     return out

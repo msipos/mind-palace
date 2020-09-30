@@ -76,7 +76,7 @@ class RepeatPolicyEntity:
             else:
                 return f'{self.hours} hours'
         else:
-            raise ValueError(f'Invalid type="{typ}"')
+            raise ValueError(f'Invalid type="{self.typ}"')
 
     @staticmethod
     def _apply_factor(value: Optional[int], factor: float):
@@ -87,7 +87,11 @@ class RepeatPolicyEntity:
         if factor < 1.0:
             if value == 1:
                 return value
-        return math.floor(value * factor)
+        new_value = math.floor(value * factor)
+        # No matter what, increment it by at least 1.
+        if new_value == value:
+            new_value += 1
+        return new_value
 
     def copy(self, factor: float = 1.0) -> 'RepeatPolicyEntity':
         return RepeatPolicyEntity(
