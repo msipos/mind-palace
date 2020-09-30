@@ -1,6 +1,28 @@
+/* Title */
+
+.NoteViewer-Title-Section {
+    display: flex;
+    flex-direction: row;
+}
+
 .NoteViewer-Title {
     margin-left: 15px;
+    margin-bottom: 8px !important;
 }
+
+.NoteViewer-Title-Icon {
+    margin-right: 15px;
+}
+
+.NoteViewer-Title-Gap {
+    flex-grow: 1;
+}
+
+.NoteViewer-Title-Buttons {
+
+}
+
+/* Section */
 
 .NoteViewer-Section {
     margin-top: 10px;

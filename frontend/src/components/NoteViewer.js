@@ -4,6 +4,7 @@ import marked from 'marked';
 import DOMPurify from 'dompurify';
 import './NoteViewer.css';
 import {cloneObject} from "../utils";
+import NoteViewerEditButton from "./NoteViewerEditButton";
 
 function _formatTime(t) {
     const d = new Date(t * 1000);
@@ -33,9 +34,10 @@ class NoteViewer extends React.Component {
     }
 
     render() {
+        const note = this.props.note;
         let sections = [];
         let i = 0;
-        for (const section of this.props.note.contents.sections) {
+        for (const section of note.contents.sections) {
             let className = "box NoteViewer-Section";
             let appearHidden = false;
             if (section.hidden) {
@@ -66,8 +68,6 @@ class NoteViewer extends React.Component {
             i += 1;
         }
 
-        const note = this.props.note;
-
         // Assemble description
         let description = "Repeats ";
         if (note.repeat_policy.type === "none") {
@@ -85,7 +85,7 @@ class NoteViewer extends React.Component {
         }
 
         // Note title
-        let noteTitle = this.props.note.name.trim();
+        let noteTitle = note.name.trim();
         if (noteTitle === "") {
             noteTitle = "Untitled";
         }
@@ -97,7 +97,18 @@ class NoteViewer extends React.Component {
 
         return (
             <div>
-                <h1 className="title NoteViewer-Title">{noteTitle}</h1>
+                <div className="NoteViewer-Title-Section">
+                    <h1 className="title NoteViewer-Title">
+                        <span className="NoteViewer-Title-Icon icon"><i className="fas fa-sticky-note" /></span>
+                        {noteTitle}
+                    </h1>
+                    <div className="NoteViewer-Title-Gap" />
+                    <div className="NoteViewer-Title-Buttons">
+                        <NoteViewerEditButton
+                            archived={note.archived}
+                        />
+                    </div>
+                </div>
                 {sections}
                 <div className="box NoteViewer-Section">
                     { archivedText }

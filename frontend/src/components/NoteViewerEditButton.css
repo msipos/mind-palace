@@ -1,0 +1,11 @@
+.NoteViewerEditButton-Trigger {
+    margin-bottom: 0 !important;
+}
+
+.NoteViewerEditButton-Trigger button {
+    margin-bottom: 0 !important;
+}
+
+.NoteViewerEditButton-Dropdown a {
+    font-size: 1rem;
+}
