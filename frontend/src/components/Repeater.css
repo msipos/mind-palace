@@ -2,15 +2,10 @@
     margin-right: 15px;
 }
 
-.Repeater-Label {
-    padding-top: 7px;
-    padding-right: 15px;
-    padding-bottom: 5px;
-}
-
 .Repeater {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Repeater-Button {
@@ -20,6 +15,13 @@
 @media (min-width: 800px) {
     .Repeater-Button {
         height: 50px !important;
+    }
+    .Repeater-ButtonBar {
+       margin-bottom: 30px;
+    }
+    .Repeater-Label {
+        padding-top: 7px;
+        padding-bottom: 30px;
     }
 }
 
