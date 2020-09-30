@@ -90,11 +90,17 @@ class NoteViewer extends React.Component {
             noteTitle = "Untitled";
         }
 
+        let archivedText = null;
+        if (note.archived) {
+            archivedText = <p>This note is <b>archived.</b></p>;
+        }
+
         return (
             <div>
                 <h1 className="title NoteViewer-Title">{noteTitle}</h1>
                 {sections}
                 <div className="box NoteViewer-Section">
+                    { archivedText }
                     <p dangerouslySetInnerHTML={{__html: description}}/>
                     <p>Created: <b>{_formatTime(note.created_time)}</b></p>
                     <p>Last updated: <b>{_formatTime(note.updated_time)}</b></p>

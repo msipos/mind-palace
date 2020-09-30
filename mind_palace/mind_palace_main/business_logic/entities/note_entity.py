@@ -9,7 +9,8 @@ from mind_palace.mind_palace_main.business_logic.entities.repeat_policy_entity i
 class NoteEntity:
     def __init__(self, name: str, contents: ContentsEntity, repeat_policy: Optional[RepeatPolicyEntity] = None,
                  learn_policy: Optional[LearnPolicyEntity] = None, created_time: int = 0,
-                 updated_time: int = 0, repeat_time: int = 0, note_id: Optional[str] = None):
+                 updated_time: int = 0, repeat_time: int = 0, note_id: Optional[str] = None,
+                 archived=False):
         self.name = name
         self.contents = contents
 
@@ -27,6 +28,8 @@ class NoteEntity:
 
         self.note_id = note_id
 
+        self.archived = archived
+
     @staticmethod
     def from_json(d: dict) -> 'NoteEntity':
         return NoteEntity(
@@ -38,6 +41,7 @@ class NoteEntity:
             created_time=d.get('created_time', 0),
             updated_time=d.get('updated_time', 0),
             repeat_time=d.get('repeat_time', 0),
+            archived=d.get('archived', False)
         )
 
     def to_json(self) -> dict:
@@ -49,5 +53,6 @@ class NoteEntity:
             'created_time': self.created_time,
             'updated_time': self.updated_time,
             'repeat_time': self.repeat_time,
-            'note_id': self.note_id
+            'note_id': self.note_id,
+            'archived': self.archived
         }
