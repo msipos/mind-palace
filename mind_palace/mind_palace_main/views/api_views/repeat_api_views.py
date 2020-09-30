@@ -1,3 +1,4 @@
+from django.urls import reverse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -35,12 +36,22 @@ class RepeatAPIView(APIView):
         # Fetch choices
         choices = create_note_choices(note_entity.repeat_policy, note_entity.learn_policy)
 
+        # Get URLs
+        url_note_action = reverse("api_note_action", args=[note.id])
+        url_list_collection = reverse("list_collection", args=[note.collection.id])
+        url_note_edit = reverse("edit_note", args=[note.id])
+
         return Response({
             'num_active_notes': len(active_notes),
             'active_note': note_entity.to_json(),
             'choices': [
                 c.to_json() for c in choices
-            ]
+            ],
+            'urls': {
+                'url_note_action': url_note_action,
+                'url_list_collection': url_list_collection,
+                'url_note_edit': url_note_edit
+            }
         })
 
     def post(self, request, **kwargs):

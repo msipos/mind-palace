@@ -40,7 +40,6 @@ class NoteActions {
             throw {description: "Did not set urlNoteEdit"};
         }
         window.location = this.urlNoteEdit;
-
     }
 }
 

@@ -4,38 +4,34 @@ import './Repeater.css';
 
 class Repeater extends React.Component {
     componentDidMount() {
+        if (!this.props.choices) return;
         for (const c of this.props.choices) {
             Mousetrap.bind(String(c.payload.keyboard_shortcut), () => {
                 this.props.onChoice(c.payload)
             });
         }
-
-        Mousetrap.bind('e', () => {
-            this.props.onEdit();
-        });
     }
 
     componentWillUnmount() {
+        if (!this.props.choices) return;
         for (const c of this.props.choices) {
             Mousetrap.unbind(String(c.key));
         }
-
-        Mousetrap.unbind('e');
     }
 
     render() {
+        if (!this.props.choices) {
+            return (
+                <div className="Repeater">
+                    <div className="Repeater-Label">
+                        {this.props.label}
+                    </div>
+                </div>
+            );
+        }
+
         const buttons = [];
         const handleClick = this.props.onChoice;
-
-        // Add edit button
-        buttons.push(
-            <button className="Repeater-Button button" key={-1} onClick={() => this.props.onEdit()}>
-                Edit
-                <div className="Repeater-Button-Keyboard">
-                    <span className="fas fa-keyboard Repeater-Button-Keyboard-Shortcut" />e
-                </div>
-            </button>
-        );
 
         let idx = 0;
         for (const choice of this.props.choices) {

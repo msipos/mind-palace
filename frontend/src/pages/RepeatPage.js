@@ -15,10 +15,10 @@ class RepeatPage extends React.Component {
         }
 
         this.handleChoice = this.handleChoice.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
         setTimeout(() => this.getRepeats(), 0);
     }
 
+    // TODO: Rewrite as async
     getRepeats() {
         this.setState({condition: 'loading'});
         fetch(this.props.urlRepeat).then((response) => {
@@ -30,9 +30,13 @@ class RepeatPage extends React.Component {
                 activeNote: data.active_note,
                 numActiveNotes: data.num_active_notes
             })
+            window.actions.urlListCollection = data.urls.url_list_collection;
+            window.actions.urlNoteAction = data.urls.url_note_action;
+            window.actions.urlNoteEdit = data.urls.url_note_edit;
         });
     }
 
+    // TODO: Rewrite as async
     handleChoice(choice) {
         fetchPost(this.props.urlRepeat, {
             note_id: this.state.activeNote.note_id,
@@ -42,17 +46,13 @@ class RepeatPage extends React.Component {
         })
     }
 
-    handleEdit() {
-        window.location = this.props.urlEditPrefix + this.state.activeNote.note_id + this.props.urlEditPostfix;
-    }
-
     render() {
         if (this.state.condition === 'loading') {
-            return <div>Loading...</div>;
+            return <Repeater label="Loading..." />;
         }
 
         if (this.state.numActiveNotes === 0) {
-            return <div>All done!</div>
+            return <Repeater label="All done!" />;
         }
 
         const note_viewer = <NoteViewer note={this.state.activeNote}/>;
@@ -64,9 +64,8 @@ class RepeatPage extends React.Component {
                 payload: choice
             });
         }
-        const label = this.state.numActiveNotes + " active notes."
-        const repeater = <Repeater label={label} choices={choices} onChoice={this.handleChoice}
-                                   onEdit={this.handleEdit}/>;
+        const label = this.state.numActiveNotes + " active notes.  Click to learn them."
+        const repeater = <Repeater label={label} choices={choices} onChoice={this.handleChoice}/>;
 
         return <div>
             <div>{repeater}</div>
