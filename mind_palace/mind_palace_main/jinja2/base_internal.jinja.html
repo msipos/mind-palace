@@ -7,41 +7,43 @@
 
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="{{ url('home') }}">
-            MindPalace
-        </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-           data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+<nav class="Nav" role="navigation" aria-label="main navigation">
+    <div class="Nav-Brand">
+        <a href="{{ url('home') }}">
+            <span class="NavIcon icon"><i class="fas fa-brain"></i></span>
+            <span class="NavText">
+                <b>MindPalace</b>
+            </span>
         </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item" href="{{ url('home') }}">
-                <span style="margin-right: 5px;" class="icon"><i class="fas fa-home"></i></span>
-                Home
-            </a>
-            <a class="navbar-item" href="{{ url('repeat') }}">
-                <span style="margin-right: 5px;" class="icon"><i class="fas fa-stopwatch"></i></span>
+    <div>
+        <a href="{{ url('repeat') }}">
+            <span class="NavIcon icon"><i class="fas fa-stopwatch"></i></span>
+            <span class="NavText">
                 Repeat
-            </a>
-        </div>
+            </span>
+        </a>
+    </div>
 
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-light" href="{{ url('logout') }}">
-                        Log Out
-                    </a>
-                </div>
-            </div>
-        </div>
+    <div class="Nav-Grow">
+        <form method="get" autocomplete="on" class="form-inline">
+            <input type="text" name="q" value="{{ q }}"
+                   class="input"
+                   id="id_search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+    <div class="Nav-Grow"></div>
+
+    <div>
+        <a class="button is-info" href="{{ url('logout') }}">
+            <i class="fas fa-sign-out-alt"></i>
+            <span style="margin-left: 5px;" class="NavText">
+                Sign Out
+            </span>
+        </a>
     </div>
 </nav>
 

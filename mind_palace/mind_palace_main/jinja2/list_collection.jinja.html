@@ -54,8 +54,14 @@
         <div class="container">
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><a href="{{ url('home') }}">Home</a></li>
-                    <li class="is-active"><a href="#" aria-current="page">{{ collection.name }}</a></li>
+                    <li><a href="{{ url('home') }}">
+                        <span style="margin-right: 5px;" class="icon"><i class="fas fa-home"></i></span>
+                        Home
+                    </a></li>
+                    <li class="is-active"><a href="#" aria-current="page">
+                        <span style="margin-right: 5px;" class="icon"><i class="fas fa-book"></i></span>
+                        {{ collection.name }}
+                    </a></li>
                 </ul>
             </nav>
 

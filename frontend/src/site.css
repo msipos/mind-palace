@@ -1,5 +1,5 @@
 html {
-    background: #fafafa;
+    background: #ffffff;
     font-size: 12px;
 }
 
@@ -14,5 +14,49 @@ nav {
 @media (max-width: 1024px) {
     section {
         padding: 0 5px 0 5px;
+    }
+}
+
+/* Navbar */
+
+.Nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.25rem;
+    background-color: #00D1B2;
+}
+
+.Nav input {
+    max-width: 250px;
+}
+
+.Nav .form-inline {
+    margin-bottom: 0;
+}
+
+.Nav > div {
+    margin: 8px;
+}
+
+.Nav a {
+    color: #ffffff;
+}
+
+div.Nav-Brand {
+    margin-right: 15px;
+}
+
+.Nav-Grow {
+    flex-grow: 1;
+}
+
+.NavIcon {
+    margin-right: 5px !important;
+}
+
+@media (max-width: 800px) {
+    .NavText {
+        display: none;
     }
 }
