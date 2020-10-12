@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from mind_palace.mind_palace_main.business_logic.entities.choice_entity import ChoiceEntity
 from mind_palace.mind_palace_main.business_logic.learn_logic import create_note_choices
 from mind_palace.mind_palace_main.business_logic.repeat_logic import repeat_note
+from mind_palace.mind_palace_main.business_logic.timestamps import timestamp_now
 from mind_palace.mind_palace_main.models import Collection, Note
 
 
@@ -61,6 +62,7 @@ class RepeatAPIView(APIView):
         note = Note.get_note_by_id(self.request.user, note_id)
         note_entity = note.to_entity()
         choice_entity = ChoiceEntity.from_json(choice)
+        note.last_repeat_time = timestamp_now()
         note.repeat_time = repeat_note(note_entity.repeat_policy, choice_entity)
         if choice_entity.overwrite_repeat_policy:
             assert choice_entity.repeat_policy is not None
