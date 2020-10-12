@@ -27,8 +27,8 @@
     </div>
 
     <div class="Nav-Grow">
-        <form method="get" autocomplete="on" class="form-inline">
-            <input type="text" name="q" value="{{ q }}"
+        <form method="get" autocomplete="on" class="form-inline" action="{{ url('search') }}">
+            <input type="text" name="q" value="{% if q_search %}{{ q_search }}{% endif %}"
                    class="input"
                    id="id_search"
                    placeholder="Search">

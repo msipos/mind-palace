@@ -10,6 +10,7 @@ from mind_palace.mind_palace_main.views.collection_views import ListCollectionVi
 from mind_palace.mind_palace_main.views.home_view import HomeView
 from mind_palace.mind_palace_main.views.note_views import ViewNoteView, EditNoteView
 from mind_palace.mind_palace_main.views.repeat_views import RepeatView
+from mind_palace.mind_palace_main.views.search_views import SearchResultsView
 
 pfx = settings.MIND_PALACE_URL_PREFIX
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path(f'{pfx}n/<uuid:id>/', ViewNoteView.as_view(), name='view_note'),
     path(f'{pfx}n/<uuid:id>/edit/', EditNoteView.as_view(), name='edit_note'),
     path(f'{pfx}repeat/', RepeatView.as_view(), name='repeat'),
+    path(f'{pfx}search/', SearchResultsView.as_view(), name='search'),
 
     # Api views
     path(f'{pfx}api/n/<uuid:id>/edit/', EditNoteAPIView.as_view(), name='api_edit_note'),
