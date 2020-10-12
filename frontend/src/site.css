@@ -24,7 +24,7 @@ nav {
     flex-direction: row;
     align-items: center;
     font-size: 1.25rem;
-    background-color: #00D1B2;
+    background-color: #e5e5e5;
 }
 
 .Nav input {
@@ -40,7 +40,7 @@ nav {
 }
 
 .Nav a {
-    color: #ffffff;
+    color: #282828;
 }
 
 div.Nav-Brand {
