@@ -15,6 +15,11 @@
 
             <div class="columns">
                 <div class="column">
+
+                    <div style="margin-bottom:10px;">
+                        <span id="NewCollectionButton"></span>
+                    </div>
+
                     <table class="table is-fullwidth">
                         <thead>
                         <tr>
@@ -45,5 +50,13 @@
         </div>
     </section>
 
+    <script>
+        window.mpReact.mount(
+            window.mpReact.components.NewCollectionButton,
+            {
+            },
+            "NewCollectionButton"
+        );
+    </script>
 
 {% endblock %}

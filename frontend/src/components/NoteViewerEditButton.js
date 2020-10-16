@@ -1,6 +1,6 @@
 import React from 'react';
 import './NoteViewerEditButton.css';
-import AreYouSureDialog from "./AreYouSureDialog";
+import AreYouSureDialog from "./dialogs/AreYouSureDialog";
 
 class NoteViewerEditButton extends React.Component {
     constructor(props) {

@@ -10,6 +10,7 @@ import './src/site.js';
 import 'bulma/css/bulma.css';
 import './src/site.css';
 import NoteActions from "./src/components/NoteActions";
+import NewCollectionButton from "./src/components/NewCollectionButton";
 
 // Various React components and pages
 window.mpReact = {
@@ -17,7 +18,8 @@ window.mpReact = {
         NoteButton: NoteButton,
         NoteViewer: NoteViewer,
         Repeater: Repeater,
-        NoteEditor: NoteEditor
+        NoteEditor: NoteEditor,
+        NewCollectionButton: NewCollectionButton
     },
     pages: {
         NewEditNotePage: NewEditNotePage,
