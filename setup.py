@@ -5,7 +5,7 @@ with open('requirements.txt', 'rt') as f:
 
 setuptools.setup(
     name="mind_palace",
-    version="0.0.7",
+    version="0.0.8",
     author="Maksim Sipos",
     author_email="msipos@mailc.net",
     description="Mind palace: mnemonic note taking system",
