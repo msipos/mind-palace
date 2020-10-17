@@ -1,15 +1,15 @@
 from django.urls import reverse
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from mind_palace.mind_palace_main.business_logic.entities.choice_entity import ChoiceEntity
 from mind_palace.mind_palace_main.business_logic.learn_logic import create_note_choices
 from mind_palace.mind_palace_main.business_logic.repeat_logic import repeat_note
 from mind_palace.mind_palace_main.business_logic.timestamps import timestamp_now
 from mind_palace.mind_palace_main.models import Collection, Note
+from mind_palace.mind_palace_main.views.api_views.base_api_view import BaseAPIView
 
 
-class RepeatAPIView(APIView):
+class RepeatAPIView(BaseAPIView):
     def get(self, request, **kwargs):
         """ This is used for listing. """
 

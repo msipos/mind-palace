@@ -1,15 +1,22 @@
 from django.urls import reverse
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from mind_palace.mind_palace_main.business_logic.entities.note_entity import NoteEntity
 from mind_palace.mind_palace_main.business_logic.repeat_logic import repeat_note
 from mind_palace.mind_palace_main.business_logic.timestamps import timestamp_now
 from mind_palace.mind_palace_main.models import Collection
 from mind_palace.mind_palace_main.models import Note
+from mind_palace.mind_palace_main.views.api_views.base_api_view import BaseAPIView
 
 
-class NewNoteAPIView(APIView):
+class NewCollectionAPIView(BaseAPIView):
+    def post(self, request, **kwargs):
+        collection = Collection.create_collection(request.data['name'], self.request.user)
+        return Response({'collection_id': collection.id,
+                         'collection_url': reverse('list_collection', args=[collection.id])})
+
+
+class NewNoteAPIView(BaseAPIView):
     def post(self, request, **kwargs):
         collection = Collection.get_collection(self.request.user, self.kwargs['id'])
         note = Note(collection=collection, created_time=timestamp_now())

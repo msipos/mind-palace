@@ -51,10 +51,10 @@
     </section>
 
     <script>
+        window.actions.urlNewCollection = "{{ url('api_new_collection') }}";
         window.mpReact.mount(
             window.mpReact.components.NewCollectionButton,
-            {
-            },
+            {},
             "NewCollectionButton"
         );
     </script>

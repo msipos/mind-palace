@@ -1,6 +1,3 @@
-"""
-Copyright (c) 2020 by Impulse Innovations Ltd. Private and confidential. Part of the causaLens product.
-"""
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q

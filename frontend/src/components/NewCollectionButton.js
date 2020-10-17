@@ -1,6 +1,5 @@
 import React from 'react';
 import './NoteButton.css';
-import {fetchPost} from "../utils";
 import InputDialog from "./dialogs/InputDialog";
 
 class NewCollectionButton extends React.Component {
@@ -14,26 +13,23 @@ class NewCollectionButton extends React.Component {
         this.handleOk = this.handleOk.bind(this);
     }
 
-    handleOk(text) {
+    async handleOk(text) {
         this.setState({modalOpen: false});
-        console.log(text);
+        let response = await window.actions.submitNewCollection(text);
+        let data = await response.json();
+        window.location = data['collection_url'];
     }
 
     handleCancel() { this.setState({modalOpen: false}); }
 
     handleClick() {
         this.setState({modalOpen: true});
-        // fetchPost(this.props.urlSubmit, {action: this.props.action}).then(() => {
-        //     window.location = this.props.urlRedirect;
-        // });
-        console.log("Hi!");
     }
 
     render() {
         let modal = null;
         if (this.state.modalOpen) modal = <span><InputDialog labelText="Enter collection name:" onOk={this.handleOk}
                                                              onCancel={this.handleCancel}/></span>;
-        console.log(modal);
         return (
             <span>
                 <button className="button is-primary" onClick={this.handleClick}>
