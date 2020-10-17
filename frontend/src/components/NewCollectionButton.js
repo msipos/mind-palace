@@ -15,7 +15,7 @@ class NewCollectionButton extends React.Component {
 
     async handleOk(text) {
         this.setState({modalOpen: false});
-        let response = await window.actions.submitNewCollection(text);
+        let response = await window.collectionActions.submitNewCollection(text);
         let data = await response.json();
         window.location = data['collection_url'];
     }

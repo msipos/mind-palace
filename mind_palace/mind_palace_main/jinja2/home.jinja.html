@@ -33,7 +33,14 @@
                         {% for collection, cache in ccs %}
                             <tr>
                                 <td>
-                                    <a href="{{ url('list_collection', args=[collection.id]) }}">{{ collection.name }}</a>
+                                    <a href="{{ url('list_collection', args=[collection.id]) }}">
+                                        {% if collection.name %}
+                                            {{ collection.name }}
+                                        {% else %}
+                                            Untitled
+                                        {% endif %}
+
+                                    </a>
                                 </td>
                                 <td>{{ cache.num_total }}</td>
                                 <td>{{ cache.num_archived }}</td>
@@ -51,7 +58,7 @@
     </section>
 
     <script>
-        window.actions.urlNewCollection = "{{ url('api_new_collection') }}";
+        window.collectionActions.urlNewCollection = "{{ url('api_new_collection') }}";
         window.mpReact.mount(
             window.mpReact.components.NewCollectionButton,
             {},

@@ -10,9 +10,6 @@ class NoteActions {
 
         // URL where to list the note's parent collection
         this.urlListCollection = null;
-
-        // URL where to create a collection
-        this.urlNewCollection = null;
     }
 
     async submitNoteAction(action) {
@@ -27,14 +24,6 @@ class NoteActions {
         }
 
         return await fetchPost(this.urlNoteAction, {action: action});
-    }
-
-    async submitNewCollection(name) {
-        if (!this.urlNewCollection) {
-            console.error("Must set urlNewCollection");
-            throw {description: "Did not set urlNewCollection"};
-        }
-        return await fetchPost(this.urlNewCollection, {name: name});
     }
 
     redirectToListCollection() {

@@ -21,10 +21,15 @@ class AreYouSureDialog extends React.Component {
     }
 
     render() {
+        let description = "Are you sure?";
+        if (this.props.labelText) {
+            description = this.props.labelText;
+        }
+        
         return (
             <Modal show={this.state.modalOpen} onClose={this.handleNo}>
                 <div className="modal-content box">
-                    <p>Are you sure?</p>
+                    <p>{description}</p>
                     <div className="NoteButton-Buttons">
                         <button className="button is-primary" onClick={this.handleYes}>Yes</button>
                         <button className="button" onClick={this.handleNo}>No</button>

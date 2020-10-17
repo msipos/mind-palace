@@ -1,4 +1,5 @@
 import React from 'react';
+import './InputDialog.css';
 import {Modal} from 'react-bulma-components';
 
 
@@ -39,7 +40,8 @@ class InputDialog extends React.Component {
             <Modal show={this.state.modalOpen} onClose={this.handleCancel}>
                 <div className="modal-content box">
                     {description}
-                    <input type="text" value={this.state.text} onChange={this.handleTextChange} autoFocus={true}/>
+                    <input className="InputDialog-input" type="text" value={this.state.text}
+                           onChange={this.handleTextChange} autoFocus={true}/>
                     <div className="NoteButton-Buttons">
                         <button className="button is-primary" onClick={this.handleOk}>Ok</button>
                         <button className="button" onClick={this.handleCancel}>Cancel</button>

@@ -27,3 +27,14 @@ class NewNoteAPIView(BaseAPIView):
         note.repeat_time = repeat_note(note_entity.repeat_policy)
         note.save()
         return Response({'note_id': note.id, 'note_url': reverse('view_note', args=[note.id])})
+
+
+class CollectionActionAPIView(BaseAPIView):
+    def post(self, request, **kwargs):
+        collection = Collection.get_collection(self.request.user, self.kwargs['id'])
+        action = request.data['action']
+        if action == 'delete':
+            collection.delete()
+        else:
+            raise ValueError(f'Invalid action: {action}')
+        return Response({})

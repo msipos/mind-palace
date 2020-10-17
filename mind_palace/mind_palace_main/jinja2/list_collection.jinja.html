@@ -9,6 +9,10 @@
             flex-direction: row;
         }
 
+        .List-Collection-Toolbar-Grow {
+            flex-grow: 1;
+        }
+
         .List-Collection-Toolbar > a {
             margin-right: 10px;
         }
@@ -54,6 +58,9 @@
                             <span style="margin-right: 5px;" class="icon"><i class="fas fa-pen-fancy"></i></span>
                             New Diary
                         </a>
+                        <span class="List-Collection-Toolbar-Grow"></span>
+                        <span id="DeleteCollectionButton">
+                        </span>
                     </div>
 
                     <table class="table is-fullwidth">
@@ -134,5 +141,15 @@
 
         </div>
     </section>
+
+    <script>
+        window.collectionActions.urlHome = "{{ url('home') }}";
+        window.collectionActions.urlCollectionAction = "{{ url('api_collection_action', args=[collection.id]) }}";
+        window.mpReact.mount(
+            window.mpReact.components.DeleteCollectionButton,
+            {},
+            "DeleteCollectionButton"
+        );
+    </script>
 
 {% endblock %}

@@ -2,7 +2,8 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 
-from mind_palace.mind_palace_main.views.api_views.collection_api_views import NewNoteAPIView, NewCollectionAPIView
+from mind_palace.mind_palace_main.views.api_views.collection_api_views import NewNoteAPIView, NewCollectionAPIView, \
+    CollectionActionAPIView
 from mind_palace.mind_palace_main.views.api_views.note_api_views import EditNoteAPIView, NoteActionAPIView
 from mind_palace.mind_palace_main.views.api_views.repeat_api_views import RepeatAPIView
 from mind_palace.mind_palace_main.views.auth_views import MpLoginView, MpLogoutView
@@ -34,5 +35,6 @@ urlpatterns = [
     path(f'{pfx}api/n/<uuid:id>/action/', NoteActionAPIView.as_view(), name='api_note_action'),
     path(f'{pfx}api/c/new/', NewCollectionAPIView.as_view(), name='api_new_collection'),
     path(f'{pfx}api/c/<uuid:id>/new/', NewNoteAPIView.as_view(), name='api_new_note'),
+    path(f'{pfx}api/c/<uuid:id>/action/', CollectionActionAPIView.as_view(), name='api_collection_action'),
     path(f'{pfx}api/repeat/', RepeatAPIView.as_view(), name='api_repeat'),
 ]

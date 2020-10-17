@@ -11,6 +11,8 @@ import 'bulma/css/bulma.css';
 import './src/site.css';
 import NoteActions from "./src/components/NoteActions";
 import NewCollectionButton from "./src/components/NewCollectionButton";
+import CollectionActions from "./src/components/CollectionActions";
+import DeleteCollectionButton from "./src/components/DeleteCollectionButton";
 
 // Various React components and pages
 window.mpReact = {
@@ -19,7 +21,8 @@ window.mpReact = {
         NoteViewer: NoteViewer,
         Repeater: Repeater,
         NoteEditor: NoteEditor,
-        NewCollectionButton: NewCollectionButton
+        NewCollectionButton: NewCollectionButton,
+        DeleteCollectionButton: DeleteCollectionButton
     },
     pages: {
         NewEditNotePage: NewEditNotePage,
@@ -35,4 +38,4 @@ window.mpReact = {
 
 // Global variable that is used to send information to the backend, populated in the specific HTML pages.
 window.actions = new NoteActions();
-
+window.collectionActions = new CollectionActions();
