@@ -3,9 +3,7 @@ Django settings for mind_palace project.
 
 Environment variables to set:
 
-MIND_PALACE_STATIC_DIR      -- path to dir where static files will be hosted / used by collectstatic
 MIND_PALACE_SQLITE          -- path to sqlite database
-MIND_PALACE_LOGFILE         -- path to logfile to use
 MIND_PALACE_DEBUG           -- whether to run mind palace in debug mode
 MIND_PALACE_URL_PREFIX      -- URL prefix if hosting under a URL, for example "foobar/"
 MIND_PALACE_SECRET_KEY      -- secret key
@@ -109,15 +107,29 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-STATIC_ROOT = os.environ['MIND_PALACE_STATIC_DIR']
+STATIC_ROOT = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__),
+        '..',
+        '_collected_static'
+    )
+)
 STATIC_URL = '/' + MIND_PALACE_URL_PREFIX + 'static/'
 
 # Databases
 
+default_db_loc = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__),
+        '..',
+        '..',
+        'db.sqlite3'
+    )
+)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.environ['MIND_PALACE_SQLITE']
+        'NAME': os.environ.get('MIND_PALACE_SQLITE', default_db_loc)
     }
 }
 
@@ -161,15 +173,10 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
         },
-        'logfile': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.environ['MIND_PALACE_LOGFILE'],
-        },
     },
     'root': {
-        'level': 'INFO',
-        'handlers': ['console', 'logfile']
+        'level': 'DEBUG',
+        'handlers': ['console']
     },
 }
 

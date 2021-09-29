@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "mind_palace"
+version = "0.0.8"
+description = "Mind palace: mnemonic note taking system"
+authors = ["Maksim Sipos <msipos@mailc.net>"]
+
+[tool.poetry.dependencies]
+python = "3.8.*"
+Django = "3.0.*"
+djangorestframework = "3.11.*"
+gunicorn = "20.0.*"
+Jinja2 = "2.11.*"
+pytz = "2021.*"
+whitenoise = "5.1.*"
+invoke = "1.4.*"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -43,12 +43,10 @@ Pull requests welcome.
 
 ## Getting started locally
 
-* Make sure to use a Python 3 virtual environment.
-
-* Install all the dependencies:
+* With poetry:
 
 ```
-pip install -r requirements.txt
+poetry install
 ```
 
 * Install frontend dependencies:
@@ -58,12 +56,6 @@ cd frontend
 npm install
 ``` 
 
-* Run a build and collect static files
-
-```
-inv collectstatic
-```
-
 * Create your `LOCAL_ENV.dev`, populate the entries and source it
 
 ```
@@ -71,22 +63,28 @@ cp LOCAL_ENV.dev.template LOCAL_ENV.dev
 source LOCAL_END.dev
 ```
 
+* Run a build and collect static files
+
+```
+poetry run inv collectstatic
+```
+
 * Create the database 
 
 ```
-python manage.py migrate
+poetry run python manage.py migrate
 ```
 
 * Create a superuser
 
 ```
-python manage.py createsuperuser
+poetry run python manage.py createsuperuser
 ```
 
 * Run your server
 
 ```
-python manage.py runserver
+poetry run python manage.py runserver
 ```
 
 ## Running in production
@@ -94,7 +92,7 @@ python manage.py runserver
 Roughly the above steps, but instead of `runserver`:
 
 ```
-gunicorn mind_palace.mind_palace_site.wsgi -w 2 --log-level debug
+poetry run gunicorn mind_palace.mind_palace_site.wsgi -w 2 --log-level debug
 ```
 
-You will want to proxy 
+You will want to proxy via a gateway load balancer such as Caddy or Nginx.
