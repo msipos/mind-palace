@@ -96,3 +96,19 @@ poetry run gunicorn mind_palace.mind_palace_site.wsgi -w 2 --log-level debug
 ```
 
 You will want to proxy via a gateway load balancer such as Caddy or Nginx.
+
+
+## Docker (WIP)
+
+Build package:
+
+```
+docker build -t mind_palace:dev -f docker/Dockerfile.build .
+```
+
+Test package (WIP):
+```
+
+```
+
+

@@ -1,0 +1,19 @@
+FROM python:3.8
+
+# Create app directory
+WORKDIR /app
+
+# Install node
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt -y install nodejs
+
+# Install poetry
+RUN pip install poetry==1.1.5
+
+COPY pyproject.toml /app/pyproject.toml
+COPY mind_palace /app/mind_palace
+
+# Build package
+# RUN poetry install
+
+CMD [ "/bin/sh" ]
