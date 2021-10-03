@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.8 AS builder
 
 # Create app directory
 WORKDIR /app
@@ -12,8 +12,14 @@ RUN pip install poetry==1.1.5
 
 COPY pyproject.toml /app/pyproject.toml
 COPY mind_palace /app/mind_palace
+COPY frontend /app/frontend
+COPY tasks.py /app/tasks.py
+COPY manage.py /app/manage.py
 
 # Build package
-# RUN poetry install
+RUN cd /app/frontend && npm install
+RUN cd /app && poetry install
+RUN cd /app && poetry run inv collectstatic-release
+RUN cd /app && poetry build
 
 CMD [ "/bin/sh" ]

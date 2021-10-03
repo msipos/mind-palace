@@ -66,7 +66,7 @@ source LOCAL_END.dev
 * Run a build and collect static files
 
 ```
-poetry run inv collectstatic
+poetry run inv collectstatic  # or collectstatic-release
 ```
 
 * Create the database 
@@ -108,7 +108,7 @@ docker build -t mind_palace:dev -f docker/Dockerfile.build .
 
 Test package (WIP):
 ```
-
+docker run -it --rm mind_palace:dev /bin/bash
 ```
 
 

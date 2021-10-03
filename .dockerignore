@@ -1,3 +1,7 @@
 .git
 mind_palace/_collected_static
+mind_palace/mind_palace_main/static
 **/__pycache__
+frontend/dist
+frontend/node_modules
+frontend/package-lock.json

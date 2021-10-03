@@ -32,6 +32,11 @@ def collectstatic(c):
 
 
 @task(pre=[build_frontend_release])
+def collectstatic_release(c):
+    c.run('python manage.py collectstatic --noinput')
+
+
+@task(pre=[build_frontend_release])
 def build(c):
     c.run('python setup.py sdist bdist_wheel')
 

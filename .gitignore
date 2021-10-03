@@ -2,11 +2,7 @@ _static/
 db.sqlite3
 logs.txt
 
-mind_palace/mind_palace_main/static/site.css
-mind_palace/mind_palace_main/static/site.js
-mind_palace/mind_palace_main/static/site.js.map
-mind_palace/mind_palace_main/static/css
-mind_palace/mind_palace_main/static/webfonts
+mind_palace/mind_palace_main/static
 mind_palace/_collected_static
 
 .idea/
