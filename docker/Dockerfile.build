@@ -10,16 +10,39 @@ RUN apt -y install nodejs
 # Install poetry
 RUN pip install poetry==1.1.5
 
+# Install frontend
+COPY frontend /app/frontend
+RUN cd /app/frontend && npm install
+
+# Copy package
 COPY pyproject.toml /app/pyproject.toml
 COPY mind_palace /app/mind_palace
-COPY frontend /app/frontend
 COPY tasks.py /app/tasks.py
 COPY manage.py /app/manage.py
 
-# Build package
-RUN cd /app/frontend && npm install
+# Install py deps
 RUN cd /app && poetry install
+
+# Build frontend
 RUN cd /app && poetry run inv collectstatic-release
+
+# Build package
 RUN cd /app && poetry build
 
 CMD [ "/bin/sh" ]
+
+FROM python:3.8 AS runtime
+
+# Create app directory
+WORKDIR /app
+
+# Copy package
+COPY --from=builder /app/dist/mind_palace-*.whl /app/
+COPY manage.py /app/manage.py
+COPY docker/gunicorn.sh /app/gunicorn.sh
+COPY docker/manage.sh /app/manage.sh
+
+# Install package
+RUN mkdir -p /app/data && cd /app && pip install mind_palace-*.whl && rm /app/mind_palace-*.whl
+
+CMD [ "/bin/bash", "/app/gunicorn.sh" ]

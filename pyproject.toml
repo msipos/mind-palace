@@ -3,6 +3,8 @@ name = "mind_palace"
 version = "0.0.8"
 description = "Mind palace: mnemonic note taking system"
 authors = ["Maksim Sipos <msipos@mailc.net>"]
+include = ["mind_palace/_collected_static/*"]
+exclude = ["mind_palace/mind_palace_main/static/*"]
 
 [tool.poetry.dependencies]
 python = "3.8.*"
