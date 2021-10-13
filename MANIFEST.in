@@ -1,5 +1,0 @@
-include mind_palace/mind_palace_main/jinja2/*.html
-include mind_palace/mind_palace_main/jinja2/auth/*.html
-include mind_palace/mind_palace_main/static/*
-include mind_palace/mind_palace_main/static/css/*
-include mind_palace/mind_palace_main/static/webfonts/*

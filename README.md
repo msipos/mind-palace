@@ -111,4 +111,9 @@ Test package (WIP):
 docker run -it --rm mind_palace:dev /bin/bash
 ```
 
+Retag package:
 
+```
+docker tag mind_palace:dev msiposdocker/mind_palace:0.0.X
+docker push msiposdocker/mind_palace:0.0.X
+```
