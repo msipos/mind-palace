@@ -133,6 +133,15 @@ DATABASES = {
     }
 }
 
+# Caches
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.environ.get('MIND_PALACE_CACHE', '/var/tmp/mind_palace_cache')
+    }
+}
+
 # Authentication
 
 LOGIN_URL = f'/{MIND_PALACE_URL_PREFIX}login/'
@@ -190,3 +199,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
+
+# Exports
+
+EXPORTS = os.environ.get('MIND_PALACE_EXPORTS', '.')
