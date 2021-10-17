@@ -6,7 +6,7 @@ class Command(BaseCommand):
     help = 'Create an admin user'
 
     def handle(self, *args, **options):
-        print('Creating admin user...')
+        print('Creating admin user with password "change_my_password"...')
         try:
             User.objects.create_superuser('admin', password='change_my_password')
             print('... created.')

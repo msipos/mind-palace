@@ -10,7 +10,6 @@ def build_frontend_debug(c):
     with c.cd('frontend'):
         c.run('npm run build')
         c.run(f'cp -v dist/site.js ../{STATIC_DIR}')
-        c.run(f'cp -v dist/site.js.map ../{STATIC_DIR}')
         c.run(f'cp -v dist/site.css ../{STATIC_DIR}')
         c.run(f'cp -vR static_assets/* ../{STATIC_DIR}')
 
@@ -34,11 +33,6 @@ def collectstatic(c):
 @task(pre=[build_frontend_release])
 def collectstatic_release(c):
     c.run('python manage.py collectstatic --noinput')
-
-
-@task(pre=[build_frontend_release])
-def build(c):
-    c.run('python setup.py sdist bdist_wheel')
 
 
 @task

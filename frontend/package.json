@@ -2,12 +2,19 @@
   "private": true,
   "name": "mp-frontend",
   "scripts": {
-    "build": "poi",
-    "buildprod": "poi --prod",
-    "serve": "poi --serve"
+    "build": "npx webpack --mode=development --config webpack.config.js",
+    "buildprod": "npx webpack --mode=production --config webpack.config.js"
   },
   "devDependencies": {
-    "poi": "^12.8.0"
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.4.0",
+    "mini-css-extract-plugin": "^2.4.2",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0"
   },
   "dependencies": {
     "bootstrap": "^4.5.0",

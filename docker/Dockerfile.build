@@ -41,7 +41,7 @@ COPY --from=builder /app/dist/mind_palace-*.whl /app/
 
 # Install package
 RUN mkdir -p /app/data && mkdir -p /app/cache && mkdir -p /app/exports && cd /app && pip install mind_palace-*.whl && \
-    rm /app/mind_palace-*.whl && rm ~/.cache/pip
+    rm /app/mind_palace-*.whl && rm -rf ~/.cache/pip
 
 COPY manage.py /app/manage.py
 COPY docker/gunicorn.sh /app/gunicorn.sh
