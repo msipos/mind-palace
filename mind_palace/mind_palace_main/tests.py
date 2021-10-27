@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from django.test import TestCase
 from jinja2 import Environment
@@ -7,6 +9,7 @@ from mind_palace.mind_palace_main.business_logic.entities.repeat_policy_entity i
 from mind_palace.mind_palace_main.business_logic.repeat_logic import repeat_note, FAR_FUTURE
 from mind_palace.mind_palace_main.business_logic.timestamps import timestamp_now, timestamp_to_localtime, localtime_to_timestamp, \
     make_localtime
+from mind_palace.mind_palace_main.utils import IpRecord
 
 
 class TestTime(TestCase):
@@ -52,3 +55,17 @@ class TestVarious(TestCase):
         })
         t = env.from_string('Test render {{hi}}, {{foo(hi)}}')
         self.assertEqual(t.render(), 'Test render 5, 10')
+
+
+class TestIpRecord(TestCase):
+    def test_ip_record(self):
+        dt = datetime.date(2020, 1, 1)
+        ipr1 = IpRecord('123.22.33.44', 'test')
+        ipr1.cache_update(dt)
+        dt = datetime.date(2020, 1, 2)
+        ipr1 = IpRecord('123.22.33.50', 'test')
+        ipr1.cache_update(dt)
+        dt = datetime.date(2020, 1, 3)
+        ipr1 = IpRecord('123.22.33.60', 'test')
+        ipr1.cache_update(dt)
+        print(ipr1.ip_map)
