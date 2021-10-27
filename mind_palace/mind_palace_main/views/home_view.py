@@ -1,9 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseNotFound
+from django.views import View
 from django.views.generic import TemplateView
 
 from mind_palace.mind_palace_main.business_logic.collection_cache import CollectionCache
 from mind_palace.mind_palace_main.business_logic.timestamps import timestamp_now
 from mind_palace.mind_palace_main.models import Collection
+
+
+class RootView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponseNotFound('not found')
 
 
 class HomeView(LoginRequiredMixin, TemplateView):

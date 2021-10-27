@@ -8,14 +8,21 @@ from mind_palace.mind_palace_main.views.api_views.note_api_views import EditNote
 from mind_palace.mind_palace_main.views.api_views.repeat_api_views import RepeatAPIView
 from mind_palace.mind_palace_main.views.auth_views import MpLoginView, MpLogoutView
 from mind_palace.mind_palace_main.views.collection_views import ListCollectionView, NewNoteView
-from mind_palace.mind_palace_main.views.home_view import HomeView
+from mind_palace.mind_palace_main.views.home_view import HomeView, RootView
 from mind_palace.mind_palace_main.views.note_views import ViewNoteView, EditNoteView
 from mind_palace.mind_palace_main.views.repeat_views import RepeatView
 from mind_palace.mind_palace_main.views.search_views import SearchResultsView
 
 pfx = settings.MIND_PALACE_URL_PREFIX
 
-urlpatterns = [
+urlpatterns = []
+
+if pfx:
+    urlpatterns.append(
+        path('', RootView.as_view(), name='root')
+    )
+
+urlpatterns += [
     # Auth and admin
     path(f'{pfx}admin/', admin.site.urls),
     path(f'{pfx}login/', MpLoginView.as_view(), name='login'),
