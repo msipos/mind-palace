@@ -1,6 +1,7 @@
 from django.urls import reverse
 from rest_framework.response import Response
 
+from mind_palace.mind_palace_main.business_logic.caches.full_metrics_cache import invalidate_cached_full_metrics
 from mind_palace.mind_palace_main.business_logic.entities.choice_entity import ChoiceEntity
 from mind_palace.mind_palace_main.business_logic.learn_logic import create_note_choices
 from mind_palace.mind_palace_main.business_logic.repeat_logic import repeat_note
@@ -56,6 +57,8 @@ class RepeatAPIView(BaseAPIView):
         })
 
     def post(self, request, **kwargs):
+        invalidate_cached_full_metrics(request.user)
+
         note_id = request.data['note_id']
         choice = request.data['choice']
 

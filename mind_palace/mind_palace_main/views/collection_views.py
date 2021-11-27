@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.views import View
 from django.views.generic import TemplateView
 
+from mind_palace.mind_palace_main.business_logic.caches.full_metrics_cache import get_cached_full_metrics
 from mind_palace.mind_palace_main.business_logic.entities.contents_entity import ContentsEntity
 from mind_palace.mind_palace_main.business_logic.entities.learn_policy_entity import LearnPolicyEntity, LearnPolicyType
 from mind_palace.mind_palace_main.business_logic.entities.note_entity import NoteEntity
@@ -55,7 +56,8 @@ class ListCollectionView(LoginRequiredMixin, TemplateView):
             'paginator': paginator,
             'collection': collection,
             'reference_time': reference_time,
-            'pretty_format_timedelta': pretty_format_timedelta
+            'pretty_format_timedelta': pretty_format_timedelta,
+            'fm': get_cached_full_metrics(self.request.user)
         }
 
 

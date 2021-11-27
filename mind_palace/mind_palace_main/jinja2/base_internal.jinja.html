@@ -22,6 +22,11 @@
             <span class="NavIcon icon"><i class="fas fa-stopwatch"></i></span>
             <span class="NavText">
                 Repeat
+                {%  if fm %}
+                    {%  if fm.total_active > 0 %}
+                    <span class="tag is-danger">{{ fm.total_active }}</span>
+                    {%  endif %}
+                {%  endif %}
             </span>
         </a>
     </div>

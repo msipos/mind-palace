@@ -30,21 +30,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for collection, cache in ccs %}
+                        {% for c in fm.collections %}
                             <tr>
                                 <td>
-                                    <a href="{{ url('list_collection', args=[collection.id]) }}">
-                                        {% if collection.name %}
-                                            {{ collection.name }}
+                                     <a href="{{ url('list_collection', args=[c.id]) }}">
+                                        {% if c.name %}
+                                            {{ c.name }}
                                         {% else %}
                                             Untitled
                                         {% endif %}
 
                                     </a>
                                 </td>
-                                <td>{{ cache.num_total }}</td>
-                                <td>{{ cache.num_archived }}</td>
-                                <td>{{ cache.num_active }}</td>
+                                <td>{{ c.num_total }}</td>
+                                <td>{{ c.num_archived }}</td>
+                                <td>{{ c.num_active }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

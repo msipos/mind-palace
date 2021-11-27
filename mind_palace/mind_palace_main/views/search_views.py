@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.views.generic import TemplateView
 
+from mind_palace.mind_palace_main.business_logic.caches.full_metrics_cache import get_cached_full_metrics
 from mind_palace.mind_palace_main.business_logic.timestamps import timestamp_to_localtime, timestamp_now
 from mind_palace.mind_palace_main.models import Collection, Note
 from mind_palace.mind_palace_main.utils import pretty_format_timedelta
@@ -43,5 +44,6 @@ class SearchResultsView(LoginRequiredMixin, TemplateView):
             'q_search': q,
             'paginator': paginator,
             'reference_time': reference_time,
-            'pretty_format_timedelta': pretty_format_timedelta
+            'pretty_format_timedelta': pretty_format_timedelta,
+            'fm': get_cached_full_metrics(self.request.user)
         }

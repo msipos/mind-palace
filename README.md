@@ -60,7 +60,7 @@ npm install
 
 ```
 cp LOCAL_ENV.dev.template LOCAL_ENV.dev
-source LOCAL_END.dev
+source LOCAL_ENV.dev
 ```
 
 * Run a build and collect static files
@@ -81,7 +81,7 @@ poetry run python manage.py migrate
 poetry run python manage.py createsuperuser
 ```
 
-* Run your server
+* Run your server for development
 
 ```
 poetry run python manage.py runserver
