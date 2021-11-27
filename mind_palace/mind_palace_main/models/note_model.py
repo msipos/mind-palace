@@ -104,6 +104,8 @@ class Note(models.Model):
             updated_time=self.updated_time,
             repeat_time=self.repeat_time,
             note_id=str(self.id),
+            collection_id=str(self.collection_id),
+            collection_name=self.collection.name,
             archived=self.archived
         )
 

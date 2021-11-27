@@ -10,6 +10,7 @@ class NoteEntity:
     def __init__(self, name: str, contents: ContentsEntity, repeat_policy: Optional[RepeatPolicyEntity] = None,
                  learn_policy: Optional[LearnPolicyEntity] = None, created_time: int = 0,
                  updated_time: int = 0, repeat_time: int = 0, note_id: Optional[str] = None,
+                 collection_id: Optional[str] = None, collection_name: Optional[str] = None,
                  archived=False):
         self.name = name
         self.contents = contents
@@ -28,6 +29,10 @@ class NoteEntity:
 
         self.note_id = note_id
 
+        # Collection reference
+        self.collection_id = collection_id
+        self.collection_name = collection_name
+
         self.archived = archived
 
     @staticmethod
@@ -38,10 +43,12 @@ class NoteEntity:
             repeat_policy=RepeatPolicyEntity.from_json(d['repeat_policy']),
             learn_policy=LearnPolicyEntity.from_json(d['learn_policy']),
             note_id=d.get('note_id'),
+            collection_id=d.get('collection_id'),
+            collection_name=d.get('collection_name'),
             created_time=d.get('created_time', 0),
             updated_time=d.get('updated_time', 0),
             repeat_time=d.get('repeat_time', 0),
-            archived=d.get('archived', False)
+            archived=d.get('archived', False),
         )
 
     def to_json(self) -> dict:
@@ -54,5 +61,7 @@ class NoteEntity:
             'updated_time': self.updated_time,
             'repeat_time': self.repeat_time,
             'note_id': self.note_id,
+            'collection_id': self.collection_id,
+            'collection_name': self.collection_name,
             'archived': self.archived
         }
