@@ -8,6 +8,8 @@
 .NoteViewer-Title {
     margin-left: 15px;
     margin-bottom: 8px !important;
+    font-size: 1.5rem !important;
+    margin-top: 5px;
 }
 
 .NoteViewer-Title-Icon {
