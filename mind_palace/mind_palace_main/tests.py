@@ -21,7 +21,7 @@ class TestTime(TestCase):
         repeat_policy = RepeatPolicyEntity(RepeatPolicyType.NONE)
         assert repeat_note(repeat_policy, reference_time=reference_time) == FAR_FUTURE
 
-        choice = ChoiceEntity(skip_to_end=True)
+        choice = ChoiceEntity(skip_5_min=True)
         assert repeat_note(repeat_policy, choice, reference_time) - reference_time == -1
 
         # Check hourly

@@ -11,8 +11,8 @@ def _choice_text(repeat_policy: RepeatPolicyEntity) -> str:
 
 def create_note_choices(repeat_policy: RepeatPolicyEntity, learn_policy: LearnPolicyEntity) -> List[ChoiceEntity]:
     out = [
-        ChoiceEntity(skip_to_end=True,
-                     choice_html='Skip to end',
+        ChoiceEntity(skip_5_min=True,
+                     choice_html='Skip 5 min',
                      choice_index=1,
                      keyboard_shortcut='1'),
     ]

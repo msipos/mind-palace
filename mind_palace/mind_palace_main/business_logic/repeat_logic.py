@@ -25,9 +25,9 @@ def repeat_note(repeat_policy: RepeatPolicyEntity, choice: Optional[ChoiceEntity
     if choice is not None:
         if choice.repeat_policy is not None:
             repeat_policy = choice.repeat_policy
-        elif choice.skip_to_end:
-            # User chose to skip to the end.
-            return reference_time - 1
+        elif choice.skip_5_min:
+            # User chose to skip the note by 5 min
+            return reference_time + 5*60
 
     if repeat_policy.typ == RepeatPolicyType.HOURLY:
         hours = repeat_policy.hours
