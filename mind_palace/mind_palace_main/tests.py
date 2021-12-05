@@ -22,7 +22,7 @@ class TestTime(TestCase):
         assert repeat_note(repeat_policy, reference_time=reference_time) == FAR_FUTURE
 
         choice = ChoiceEntity(skip_5_min=True)
-        assert repeat_note(repeat_policy, choice, reference_time) - reference_time == -1
+        assert repeat_note(repeat_policy, choice, reference_time) - reference_time == 5*60
 
         # Check hourly
         repeat_policy = RepeatPolicyEntity.from_json({
