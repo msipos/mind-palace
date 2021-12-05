@@ -34,7 +34,7 @@ def get_cached_full_metrics(user: User, reference_time: Optional[int] = None) ->
     out = cache.get(cache_key)
     if out is None:
         out = get_full_metrics(user, reference_time)
-        cache.set(cache_key, out, timeout=15*60*60)
+        cache.set(cache_key, out, timeout=5*60*60)
     return out
 
 
