@@ -52,7 +52,14 @@
     </div>
 </nav>
 
-{% block content %}{% endblock %}
+<div class="columns">
+    <div class="column is-one-quarter mp-sidebar">
+        {% include "partial_sidebar.jinja.html" %}
+    </div>
+    <div class="column mp-main-content">
+        {% block content %}{% endblock %}
+    </div>
+</div>
 
 </body>
 

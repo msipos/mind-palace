@@ -60,3 +60,14 @@ div.Nav-Brand {
         display: none;
     }
 }
+
+/* Sidebar */
+
+.mp-sidebar {
+    padding-left: 15px;
+}
+
+.mp-main-content {
+    padding-left: 5px;
+    padding-right: 15px;
+}
